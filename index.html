@@ -402,12 +402,9 @@ Tema 1: Keluarga Penyayang
 ← Kembali ke Bahasa Melayu
 </button>
 
-
 <div class="welcome">
 
-<h1>
-👨‍👩‍👧 Unit 1: Keluargaku Sayang
-</h1>
+<h1>👨‍👩‍👧 Unit 1: Keluargaku Sayang</h1>
 
 <p>
 Jom belajar bersama Ms. Ainaa! ⭐
@@ -416,96 +413,86 @@ Jom belajar bersama Ms. Ainaa! ⭐
 </div>
 
 
-<div class="activity-card">
+<div class="unit-box">
 
-<h2>
-Pilih Aktiviti
-</h2>
-
-<p style="margin-top:10px;color:#777;">
-Belajar • Berlatih • Bermain • Berfikir
-</p>
+<h2>📚 Topik Pembelajaran</h2>
 
 
-<div class="activity-buttons">
-
-
-<button class="activity-btn bm"
-onclick="alert('📖 Bahagian Learn akan menjadi modul pembelajaran interaktif Unit 1.')">
-
-📖 Learn
-
+<button class="unit-btn" onclick="openTopic('pandainya')">
+🔤 Pandainya Arif
+<br>
+<small>Membaca vokal dan konsonan</small>
 </button>
 
 
-<button class="activity-btn english"
-onclick="alert('🎯 Bahagian Practise akan mengandungi soalan interaktif dan maklum balas segera.')">
-
-🎯 Practise
-
+<button class="unit-btn" onclick="openTopic('menulis')">
+✍️ Belajar Menulis
+<br>
+<small>Menulis huruf dengan betul</small>
 </button>
 
 
-<button class="activity-btn math"
-onclick="alert('🎮 Mini-game Unit 1 akan berada di sini.')">
-
-🎮 Play
-
+<button class="unit-btn" onclick="openTopic('tulisan')">
+📝 Cantiknya Tulisan
+<br>
+<small>Menulis dengan kemas</small>
 </button>
 
 
-<button class="activity-btn sains"
-onclick="alert('🧠 Aktiviti Think akan menguji kefahaman murid.')">
-
-🧠 Think
-
+<button class="unit-btn" onclick="openTopic('sebutlah')">
+🗣️ Sebutlah Arif
+<br>
+<small>Menyebut perkataan yang mengandungi vokal</small>
 </button>
 
 
-<button class="activity-btn bm"
-onclick="alert('⭐ Challenge akan memberikan cabaran tambahan.')">
-
-⭐ Challenge
-
+<button class="unit-btn" onclick="openTopic('ajari')">
+🔊 Ajari Arif
+<br>
+<small>Perkataan, frasa dan ayat dengan vokal</small>
 </button>
 
 
-<button class="activity-btn english"
-onclick="alert('📝 Checkpoint akan menyemak kemajuan murid.')">
-
-📝 Checkpoint
-
+<button class="unit-btn" onclick="openTopic('taman')">
+🌳 Taman Mini
+<br>
+<small>Mengenal dan menyebut konsonan</small>
 </button>
-
-
-</div>
 
 </div>
 
 </section>
 
 
+<!-- ================= TOPIK ================= -->
+
+<section id="topic" class="page">
+
+<button class="back" onclick="showPage('unit1')">
+← Kembali ke Unit 1
+</button>
+
+<div class="welcome">
+
+<h1 id="topicTitle"></h1>
+
+<p id="topicSubtitle"></p>
+
 </div>
 
 
-<footer>
+<div class="activity-card">
 
-🌸 Ms. Ainaa’s Learning Room
-<br>
-Learn • Explore • Grow
+<div id="topicContent"></div>
 
-</footer>
-
-
+</div>
 
 <script>
 
 function showPage(pageId){
 
     document.querySelectorAll(".page").forEach(function(page){
-
         page.classList.remove("active");
-
     });
 
     document.getElementById(pageId).classList.add("active");
@@ -514,6 +501,322 @@ function showPage(pageId){
         top:0,
         behavior:"smooth"
     });
+
+}
+
+
+const topics = {
+
+pandainya:{
+title:"🔤 Pandainya Arif",
+subtitle:"Membaca huruf vokal dan konsonan",
+content:`
+
+<h2>🌟 Kenali Huruf</h2>
+
+<p style="margin:15px 0;">
+Huruf vokal ialah:
+</p>
+
+<div style="font-size:35px;font-weight:bold;margin:20px;">
+A &nbsp; E &nbsp; I &nbsp; O &nbsp; U
+</div>
+
+<p>
+Selain huruf vokal, terdapat juga huruf konsonan.
+</p>
+
+<hr style="margin:25px 0;border:0;border-top:1px solid #eee;">
+
+<h2>🎯 Cuba Kamu!</h2>
+
+<p style="margin:15px 0;">
+Yang manakah huruf vokal?
+</p>
+
+<div class="activity-buttons">
+
+<button class="activity-btn bm"
+onclick="checkAnswer(this,true)">
+A
+</button>
+
+<button class="activity-btn english"
+onclick="checkAnswer(this,false)">
+B
+</button>
+
+<button class="activity-btn math"
+onclick="checkAnswer(this,false)">
+M
+</button>
+
+<button class="activity-btn sains"
+onclick="checkAnswer(this,false)">
+T
+</button>
+
+</div>
+
+<p id="feedback" style="margin-top:20px;font-weight:bold;"></p>
+
+`
+},
+
+
+menulis:{
+title:"✍️ Belajar Menulis",
+subtitle:"Menulis huruf dengan betul",
+content:`
+
+<h2>✏️ Jom Berlatih</h2>
+
+<p style="margin:15px 0;">
+Tulis semula huruf berikut dalam buku latihan kamu:
+</p>
+
+<div style="font-size:45px;font-weight:bold;margin:25px;">
+A a &nbsp;&nbsp; E e &nbsp;&nbsp; I i
+</div>
+
+<div style="font-size:45px;font-weight:bold;margin:25px;">
+O o &nbsp;&nbsp; U u
+</div>
+
+<p>
+💡 Petua Ms. Ainaa: Mulakan dari arah yang betul dan tulis dengan kemas.
+</p>
+
+<button class="activity-btn bm"
+style="margin-top:25px;"
+onclick="alert('🌟 Bagus! Jangan lupa tulis setiap huruf dengan kemas.')">
+
+⭐ Saya Dah Cuba!
+
+</button>
+
+`
+},
+
+
+tulisan:{
+title:"📝 Cantiknya Tulisan",
+subtitle:"Menulis huruf dengan kemas",
+content:`
+
+<h2>🌸 Tulisan Kemas</h2>
+
+<p style="margin:15px 0;">
+Pilih huruf yang sama.
+</p>
+
+<div style="font-size:40px;margin:25px;">
+A
+</div>
+
+<div class="activity-buttons">
+
+<button class="activity-btn bm"
+onclick="checkAnswer(this,true)">
+a
+</button>
+
+<button class="activity-btn english"
+onclick="checkAnswer(this,false)">
+e
+</button>
+
+<button class="activity-btn math"
+onclick="checkAnswer(this,false)">
+i
+</button>
+
+<button class="activity-btn sains"
+onclick="checkAnswer(this,false)">
+o
+</button>
+
+</div>
+
+<p id="feedback" style="margin-top:20px;font-weight:bold;"></p>
+
+`
+},
+
+
+sebutlah:{
+title:"🗣️ Sebutlah Arif",
+subtitle:"Menyebut perkataan yang mengandungi huruf vokal",
+content:`
+
+<h2>🔊 Mari Sebut</h2>
+
+<p style="margin:15px 0;">
+Baca perkataan berikut dengan sebutan yang betul:
+</p>
+
+<div style="font-size:28px;font-weight:bold;line-height:2.2;">
+ibu<br>
+ayah<br>
+adik<br>
+abang
+</div>
+
+<p style="margin-top:20px;">
+⭐ Sebut perlahan-lahan dan jelas.
+</p>
+
+<button class="activity-btn bm"
+style="margin-top:20px;"
+onclick="alert('👏 Syabas! Cuba sebut setiap perkataan dengan jelas.')">
+
+🔊 Saya Dah Sebut!
+
+</button>
+
+`
+},
+
+
+ajari:{
+title:"🔊 Ajari Arif",
+subtitle:"Perkataan, frasa dan ayat yang mengandungi vokal",
+content:`
+
+<h2>📖 Jom Baca</h2>
+
+<div style="text-align:left;max-width:500px;margin:25px auto;font-size:20px;line-height:2;">
+
+<p><b>Perkataan:</b> ibu</p>
+
+<p><b>Frasa:</b> ibu saya</p>
+
+<p><b>Ayat:</b> Ini ibu saya.</p>
+
+</div>
+
+<hr style="margin:25px 0;border:0;border-top:1px solid #eee;">
+
+<p>
+Apakah perkataan yang terdapat dalam ayat ini?
+</p>
+
+<h3 style="margin:20px;">
+“Ini ibu saya.”
+</h3>
+
+<div class="activity-buttons">
+
+<button class="activity-btn bm"
+onclick="checkAnswer(this,true)">
+ibu
+</button>
+
+<button class="activity-btn english"
+onclick="checkAnswer(this,false)">
+buku
+</button>
+
+<button class="activity-btn math"
+onclick="checkAnswer(this,false)">
+bola
+</button>
+
+</div>
+
+<p id="feedback" style="margin-top:20px;font-weight:bold;"></p>
+
+`
+},
+
+
+taman:{
+title:"🌳 Taman Mini",
+subtitle:"Mengenal dan menyebut huruf konsonan",
+content:`
+
+<h2>🔤 Kenali Konsonan</h2>
+
+<p style="margin:15px 0;">
+Contoh huruf konsonan:
+</p>
+
+<div style="font-size:32px;font-weight:bold;margin:25px;">
+B &nbsp; C &nbsp; D &nbsp; F &nbsp; G
+</div>
+
+<p>
+Sekarang cuba pilih huruf konsonan.
+</p>
+
+<div class="activity-buttons">
+
+<button class="activity-btn bm"
+onclick="checkAnswer(this,false)">
+A
+</button>
+
+<button class="activity-btn english"
+onclick="checkAnswer(this,true)">
+B
+</button>
+
+<button class="activity-btn math"
+onclick="checkAnswer(this,false)">
+E
+</button>
+
+<button class="activity-btn sains"
+onclick="checkAnswer(this,false)">
+I
+</button>
+
+</div>
+
+<p id="feedback" style="margin-top:20px;font-weight:bold;"></p>
+
+`
+}
+
+};
+
+
+function openTopic(topic){
+
+    const data = topics[topic];
+
+    document.getElementById("topicTitle").innerHTML = data.title;
+
+    document.getElementById("topicSubtitle").innerHTML = data.subtitle;
+
+    document.getElementById("topicContent").innerHTML = data.content;
+
+    showPage("topic");
+
+}
+
+
+function checkAnswer(button,correct){
+
+    const feedback = document.getElementById("feedback");
+
+    if(correct){
+
+        button.style.transform="scale(1.05)";
+
+        feedback.innerHTML =
+        "🎉 Syabas! Jawapan kamu betul! 🌟";
+
+        feedback.style.color="#3c8c55";
+
+    }else{
+
+        feedback.innerHTML =
+        "💪 Hampir betul! Cuba sekali lagi.";
+
+        feedback.style.color="#c77755";
+
+    }
 
 }
 
