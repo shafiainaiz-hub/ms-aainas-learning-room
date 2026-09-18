@@ -1,4 +1,716 @@
-<!DOCTYPE html>
+<!DO<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ms. Ainaa’s Learning Room</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#f8f6ff;
+  color:#303348;
+}
+
+.container{
+  width:90%;
+  max-width:1100px;
+  margin:auto;
+}
+
+/* HEADER */
+header{
+  margin-top:25px;
+  background:white;
+  border-radius:30px;
+  padding:35px;
+  box-shadow:0 10px 30px rgba(100,90,150,.12);
+  overflow:hidden;
+  position:relative;
+}
+
+header:before{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  background:#eee8ff;
+  border-radius:50%;
+  right:-60px;
+  top:-70px;
+}
+
+.logo{
+  color:#8676e8;
+  font-size:14px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+h1{
+  font-size:42px;
+  margin-top:8px;
+}
+
+.tagline{
+  color:#777b90;
+  margin-top:6px;
+  font-weight:bold;
+}
+
+.welcome{
+  margin-top:25px;
+  background:#f4efff;
+  padding:20px;
+  border-radius:20px;
+}
+
+.welcome h2{
+  font-size:21px;
+  margin-bottom:8px;
+}
+
+.welcome p{
+  line-height:1.6;
+  color:#666b80;
+}
+
+/* SECTION */
+.section-title{
+  margin:32px 0 15px;
+  font-size:23px;
+}
+
+/* SUBJECTS */
+.subject-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.subject{
+  border:none;
+  padding:23px;
+  min-height:165px;
+  background:white;
+  border-radius:24px;
+  text-align:left;
+  box-shadow:0 10px 25px rgba(100,90,150,.10);
+  cursor:pointer;
+  transition:.25s;
+}
+
+.subject:hover{
+  transform:translateY(-6px);
+}
+
+.subject-icon{
+  font-size:42px;
+}
+
+.subject h3{
+  margin-top:12px;
+  font-size:19px;
+}
+
+.subject p{
+  margin-top:7px;
+  color:#777b90;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.bm{
+  border-top:6px solid #f3a9c7;
+}
+
+.english{
+  border-top:6px solid #9fcaf2;
+}
+
+.math{
+  border-top:6px solid #f4d477;
+}
+
+.sains{
+  border-top:6px solid #a9ddbd;
+}
+
+/* PROGRESS */
+.progress-card{
+  background:white;
+  border-radius:24px;
+  padding:25px;
+  box-shadow:0 10px 25px rgba(100,90,150,.10);
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+
+.progress-bar{
+  width:100%;
+  height:14px;
+  background:#eeeef5;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  width:18%;
+  height:100%;
+  background:#8d7cf0;
+  border-radius:20px;
+}
+
+.progress-text{
+  margin-top:10px;
+  color:#777b90;
+}
+
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:18px;
+}
+
+.stat{
+  background:#faf9ff;
+  border-radius:18px;
+  padding:18px;
+  text-align:center;
+}
+
+.stat-number{
+  display:block;
+  font-size:28px;
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+/* AINAA CORNER */
+.corner{
+  background:#fff8df;
+  border-radius:24px;
+  padding:25px;
+  border-left:7px solid #f3d16e;
+  box-shadow:0 10px 25px rgba(100,90,150,.08);
+}
+
+.corner h3{
+  margin-bottom:10px;
+}
+
+.corner p{
+  color:#686b7d;
+  line-height:1.6;
+}
+
+.tip-button{
+  margin-top:15px;
+  padding:10px 17px;
+  border:none;
+  border-radius:12px;
+  background:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* BADGES */
+.badges{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.badge{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(100,90,150,.09);
+  opacity:.45;
+}
+
+.badge.active{
+  opacity:1;
+}
+
+.badge-icon{
+  font-size:38px;
+  display:block;
+  margin-bottom:10px;
+}
+
+.badge small{
+  display:block;
+  color:#888b9c;
+  margin-top:6px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:35px 0;
+  color:#85889a;
+  font-size:13px;
+}
+
+/* POPUP */
+.popup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(40,40,60,.35);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.popup-box{
+  background:white;
+  max-width:420px;
+  width:100%;
+  border-radius:25px;
+  padding:30px;
+  text-align:center;
+}
+
+.popup-box h2{
+  margin-bottom:10px;
+}
+
+.popup-box p{
+  color:#707486;
+  line-height:1.5;
+}
+
+.close{
+  margin-top:20px;
+  padding:11px 25px;
+  border:none;
+  border-radius:12px;
+  background:#8d7cf0;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+  .subject-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .badges{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:500px){
+
+  header{
+    padding:25px;
+  }
+
+  h1{
+    font-size:30px;
+  }
+
+  .subject-grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .badges{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">
+MS. AINAA’S LEARNING ROOM
+</div>
+
+<h1>🎓 Darjah 1</h1>
+
+<div class="tagline">
+Learn • Explore • Grow
+</div>
+
+<div class="welcome">
+
+<h2>👋 Hai, Little Learner!</h2>
+
+<p>
+Jom belajar, bermain dan teroka bersama Ms. Ainaa.
+Jangan takut kalau tersilap — cuba lagi sampai berjaya! 💪⭐
+</p>
+
+</div>
+
+</header>
+
+
+<!-- SUBJECTS -->
+
+<h2 class="section-title">
+📚 Pilih Subjek
+</h2>
+
+<div class="subject-grid">
+
+<button class="subject bm"
+onclick="openSubject('Bahasa Melayu')">
+
+<div class="subject-icon">📖</div>
+
+<h3>Bahasa Melayu</h3>
+
+<p>
+Membaca • Menulis • Tatabahasa
+</p>
+
+</button>
+
+
+<button class="subject english"
+onclick="openSubject('English')">
+
+<div class="subject-icon">🇬🇧</div>
+
+<h3>English</h3>
+
+<p>
+Words • Reading • Grammar
+</p>
+
+</button>
+
+
+<button class="subject math"
+onclick="openSubject('Matematik')">
+
+<div class="subject-icon">🔢</div>
+
+<h3>Matematik</h3>
+
+<p>
+Nombor • Operasi • Bentuk
+</p>
+
+</button>
+
+
+<button class="subject sains"
+onclick="openSubject('Sains')">
+
+<div class="subject-icon">🔬</div>
+
+<h3>Sains</h3>
+
+<p>
+Teroka • Perhati • Fikir
+</p>
+
+</button>
+
+</div>
+
+
+<!-- PROGRESS -->
+
+<h2 class="section-title">
+⭐ My Learning Progress
+</h2>
+
+<div class="progress-card">
+
+<div class="progress-top">
+
+<strong>Progress keseluruhan</strong>
+
+<strong>18%</strong>
+
+</div>
+
+<div class="progress-bar">
+
+<div class="progress-fill"></div>
+
+</div>
+
+<p class="progress-text">
+Teruskan usaha, Little Learner! 🌟
+</p>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<span class="stat-number">
+12
+</span>
+
+⭐ Bintang
+
+</div>
+
+
+<div class="stat">
+
+<span class="stat-number">
+1
+</span>
+
+🏅 Badge
+
+</div>
+
+
+<div class="stat">
+
+<span class="stat-number">
+0
+</span>
+
+📚 Unit Selesai
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- AINAA CORNER -->
+
+<h2 class="section-title">
+💡 Ms. Ainaa’s Corner
+</h2>
+
+<div class="corner">
+
+<h3>
+🌷 Petua hari ini
+</h3>
+
+<p id="tip">
+Belajar sedikit demi sedikit.
+Yang penting, terus mencuba! 💪
+</p>
+
+<button class="tip-button"
+onclick="nextTip()">
+
+Tip seterusnya →
+
+</button>
+
+</div>
+
+
+<!-- BADGES -->
+
+<h2 class="section-title">
+🏅 My Badges
+</h2>
+
+<div class="badges">
+
+<div class="badge active">
+
+<span class="badge-icon">
+🌟
+</span>
+
+<strong>
+Little Learner
+</strong>
+
+<small>
+Aktif
+</small>
+
+</div>
+
+
+<div class="badge">
+
+<span class="badge-icon">
+📖
+</span>
+
+<strong>
+Reading Star
+</strong>
+
+<small>
+Belum dibuka
+</small>
+
+</div>
+
+
+<div class="badge">
+
+<span class="badge-icon">
+🔢
+</span>
+
+<strong>
+Number Explorer
+</strong>
+
+<small>
+Belum dibuka
+</small>
+
+</div>
+
+
+<div class="badge">
+
+<span class="badge-icon">
+🔬
+</span>
+
+<strong>
+Science Explorer
+</strong>
+
+<small>
+Belum dibuka
+</small>
+
+</div>
+
+</div>
+
+
+<footer>
+
+Made with 💗 by Ms. Ainaa  
+<br>
+Learn • Explore • Grow
+
+</footer>
+
+</div>
+
+
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+<div class="popup-box">
+
+<h2 id="popupTitle">
+📚
+</h2>
+
+<p>
+Kandungan subjek ini akan kita bina bersama.
+Jom jadikan pembelajaran lebih menyeronokkan! 🌈
+</p>
+
+<button class="close"
+onclick="closePopup()">
+
+Okay! 💗
+
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const tips = [
+
+"Belajar sedikit demi sedikit. Yang penting, terus mencuba! 💪",
+
+"Petua Ms. Ainaa: Baca soalan perlahan-lahan sebelum menjawab. 📖",
+
+"Kalau tersilap, jangan risau. Cuba fikir semula dan cuba lagi! 🌱",
+
+"Hebat bukan sebab sentiasa betul — hebat sebab tidak mudah berputus asa! ⭐"
+
+];
+
+let tipIndex = 0;
+
+
+function nextTip(){
+
+tipIndex++;
+
+if(tipIndex >= tips.length){
+
+tipIndex = 0;
+
+}
+
+document.getElementById("tip").innerText =
+tips[tipIndex];
+
+}
+
+
+function openSubject(subject){
+
+document.getElementById("popupTitle").innerText =
+"📚 " + subject;
+
+document.getElementById("popup").style.display =
+"flex";
+
+}
+
+
+function closePopup(){
+
+document.getElementById("popup").style.display =
+"none";
+
+}
+
+</script>
+
+</body>
+</html>
+
+CTYPE html>
 <html lang="ms">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
