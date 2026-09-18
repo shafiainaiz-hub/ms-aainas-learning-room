@@ -1052,48 +1052,50 @@ title:"🔊 Ajari Arif",
 subtitle:"Perkataan, frasa dan ayat yang mengandungi vokal",
 content:`
 
-<h2>📖 Jom Baca</h2>
+<div class="lesson-box">
 
-<div style="text-align:left;max-width:500px;margin:25px auto;font-size:20px;line-height:2;">
+<h2>📖 Jom Belajar Membaca!</h2>
 
-<p><b>Perkataan:</b> ibu</p>
-
-<p><b>Frasa:</b> ibu saya</p>
-
-<p><b>Ayat:</b> Ini ibu saya.</p>
-
-</div>
-
-<hr style="margin:25px 0;border:0;border-top:1px solid #eee;">
-
-<p>
-Apakah perkataan yang terdapat dalam ayat ini?
+<p style="margin:15px 0;">
+Mari kenali <b>perkataan, frasa dan ayat</b> yang mudah.
 </p>
 
-<h3 style="margin:20px;">
-“Ini ibu saya.”
-</h3>
+<div style="
+background:#f8f5ff;
+padding:20px;
+border-radius:20px;
+margin:20px 0;
+text-align:left;
+line-height:2;
+">
 
-<div class="activity-buttons">
+<p>🔤 <b>Perkataan:</b> ibu</p>
 
-<button class="activity-btn bm"
-onclick="checkAnswer(this,true)">
-ibu
-</button>
+<p>📝 <b>Frasa:</b> ibu saya</p>
 
-<button class="activity-btn english"
-onclick="checkAnswer(this,false)">
-buku
-</button>
-
-<button class="activity-btn math"
-onclick="checkAnswer(this,false)">
-bola
-</button>
+<p>📖 <b>Ayat:</b> Ini ibu saya.</p>
 
 </div>
 
-<p id="feedback" style="margin-top:20px;font-weight:bold;"></p>
+<div style="
+background:#fff7df;
+padding:18px;
+border-radius:18px;
+margin:20px 0;
+">
+
+💡 <b>Petua Ms. Ainaa:</b><br>
+Baca perkataan satu demi satu. Kemudian cuba baca frasa dan ayat dengan lancar. ⭐
+
+</div>
+
+<hr style="margin:30px 0;border:0;border-top:1px solid #eee;">
+
+<h2>🎯 Cabaran Ajari Arif</h2>
+
+<div id="ajariQuiz"></div>
+
+</div>
 
 `
 },
@@ -1148,6 +1150,10 @@ function openTopic(topic){
 
     if(topic === "sebutlah"){
     startSebutlahQuiz();
+    }
+
+    if(topic === "ajari"){
+    startAjariQuiz();
     }
 
 }
@@ -2162,7 +2168,254 @@ function showSebutlahResult(){
 
     `;
 
+}  
+
+ const ajariQuestions = [
+
+    {
+        question:"Yang manakah perkataan dalam ayat “Ini ibu saya.”?",
+        options:["ibu","bola","buku","rumah"],
+        answer:"ibu"
+    },
+
+    {
+        question:"Pilih frasa yang betul.",
+        options:["ibu saya","saya makan","bola besar","Ali"],
+        answer:"ibu saya"
+    },
+
+    {
+        question:"Yang manakah ayat yang lengkap?",
+        options:[
+            "ibu saya",
+            "Ini ibu saya.",
+            "ibu",
+            "saya"
+        ],
+        answer:"Ini ibu saya."
+    },
+
+    {
+        question:"Pilih perkataan yang mengandungi huruf vokal A.",
+        options:["ibu","adik","abang","ini"],
+        answer:"abang"
+    },
+
+    {
+        question:"Lengkapkan ayat: “Ini ___ saya.”",
+        options:["ibu","bola","buku","lari"],
+        answer:"ibu"
+    }
+
+];
+
+let ajariIndex = 0;
+let ajariScore = 0;
+
+
+function startAjariQuiz(){
+
+    ajariIndex = 0;
+    ajariScore = 0;
+
+    showAjariQuestion();
+
 }
+
+
+function showAjariQuestion(){
+
+    const box =
+    document.getElementById("ajariQuiz");
+
+    if(!box) return;
+
+    const q =
+    ajariQuestions[ajariIndex];
+
+    box.innerHTML = `
+
+        <div style="
+        background:#f8f5ff;
+        padding:25px;
+        border-radius:20px;
+        margin-top:20px;
+        ">
+
+            <p style="font-weight:bold;">
+                Soalan ${ajariIndex + 1}
+                daripada ${ajariQuestions.length}
+            </p>
+
+            <h3 style="margin:20px 0;">
+                ${q.question}
+            </h3>
+
+            <div class="activity-buttons">
+
+                ${q.options.map(option => `
+
+                    <button
+                    class="activity-btn"
+                    onclick="checkAjariAnswer('${option}')">
+
+                        ${option}
+
+                    </button>
+
+                `).join("")}
+
+            </div>
+
+            <p
+            id="ajariFeedback"
+            style="
+            font-weight:bold;
+            margin-top:20px;
+            min-height:25px;
+            ">
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+function checkAjariAnswer(answer){
+
+    const q =
+    ajariQuestions[ajariIndex];
+
+    const feedback =
+    document.getElementById("ajariFeedback");
+
+    const buttons =
+    document.querySelectorAll(
+        "#ajariQuiz .activity-btn"
+    );
+
+    buttons.forEach(button => {
+
+        button.disabled = true;
+
+    });
+
+
+    if(answer === q.answer){
+
+        ajariScore++;
+
+        feedback.innerHTML =
+        "🎉 Syabas! Jawapan kamu betul! ⭐";
+
+        feedback.style.color="#3c8c55";
+
+    }else{
+
+        feedback.innerHTML =
+        "💪 Hampir betul! Cuba lagi.";
+
+        feedback.style.color="#c77755";
+
+    }
+
+
+    setTimeout(() => {
+
+        ajariIndex++;
+
+        if(
+            ajariIndex <
+            ajariQuestions.length
+        ){
+
+            showAjariQuestion();
+
+        }else{
+
+            showAjariResult();
+
+        }
+
+    },1000);
+
+}
+
+
+function showAjariResult(){
+
+    const box =
+    document.getElementById("ajariQuiz");
+
+    let stars = "";
+
+    if(ajariScore === 5){
+
+        stars = "⭐⭐⭐⭐⭐";
+
+    }else if(ajariScore >= 3){
+
+        stars = "⭐⭐⭐";
+
+    }else{
+
+        stars = "⭐";
+
+    }
+
+
+    box.innerHTML = `
+
+        <div style="
+        margin-top:25px;
+        padding:25px;
+        background:#fff7df;
+        border-radius:20px;
+        text-align:center;
+        ">
+
+            <h2>🏆 Tahniah!</h2>
+
+            <p style="
+            font-size:35px;
+            margin:15px 0;
+            ">
+                ${stars}
+            </p>
+
+            <h3>
+                Skor kamu:
+                ${ajariScore} / 5
+            </h3>
+
+            <p style="margin-top:15px;">
+
+                ${
+                    ajariScore === 5
+                    ? "Hebat! Kamu sudah pandai membaca perkataan, frasa dan ayat! 🌟"
+                    : ajariScore >= 3
+                    ? "Bagus! Teruskan berlatih membaca! 💪"
+                    : "Tidak mengapa. Cuba lagi, Little Learner! ❤️"
+                }
+
+            </p>
+
+            <button
+            class="activity-btn bm"
+            style="margin-top:20px;"
+            onclick="startAjariQuiz()">
+
+                🔄 Cuba Lagi
+
+            </button>
+
+        </div>
+
+    `;
+
+} 
     
 </script>
 
