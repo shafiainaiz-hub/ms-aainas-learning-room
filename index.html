@@ -554,39 +554,177 @@ Ingat lima huruf vokal:
 
 menulis:{
 title:"✍️ Belajar Menulis",
-subtitle:"Menulis huruf dengan betul",
+subtitle:"Kenali, padankan dan tulis huruf vokal",
 content:`
 
-<h2>✏️ Jom Berlatih</h2>
+<div class="lesson-box">
+
+<h2>🌟 Jom Belajar Menulis!</h2>
 
 <p style="margin:15px 0;">
-Tulis semula huruf berikut dalam buku latihan kamu:
+Hari ini kita akan belajar huruf vokal:
 </p>
 
-<div style="font-size:45px;font-weight:bold;margin:25px;">
-A a &nbsp;&nbsp; E e &nbsp;&nbsp; I i
+<div style="
+font-size:38px;
+font-weight:bold;
+letter-spacing:10px;
+margin:20px 0;
+">
+A E I O U
 </div>
 
-<div style="font-size:45px;font-weight:bold;margin:25px;">
-O o &nbsp;&nbsp; U u
-</div>
 
-<p>
-💡 Petua Ms. Ainaa: Mulakan dari arah yang betul dan tulis dengan kemas.
+<hr style="margin:25px 0;border:0;border-top:1px solid #eee;">
+
+
+<h2>🎯 Aktiviti 1: Padankan Huruf</h2>
+
+<p style="margin:15px 0;">
+Pilih huruf kecil yang sama dengan huruf besar.
 </p>
+
+<div style="
+font-size:45px;
+font-weight:bold;
+margin:20px;
+">
+A
+</div>
+
+<div class="activity-buttons">
 
 <button class="activity-btn bm"
-style="margin-top:25px;"
-onclick="alert('🌟 Bagus! Jangan lupa tulis setiap huruf dengan kemas.')">
+onclick="checkWritingAnswer(this,true)">
+a
+</button>
+
+<button class="activity-btn english"
+onclick="checkWritingAnswer(this,false)">
+e
+</button>
+
+<button class="activity-btn math"
+onclick="checkWritingAnswer(this,false)">
+i
+</button>
+
+<button class="activity-btn sains"
+onclick="checkWritingAnswer(this,false)">
+o
+</button>
+
+</div>
+
+<p id="writingFeedback"
+style="font-weight:bold;margin-top:20px;">
+</p>
+
+
+<hr style="margin:35px 0;border:0;border-top:1px solid #eee;">
+
+
+<h2>🔢 Aktiviti 2: Susun Huruf</h2>
+
+<p style="margin:15px 0;">
+Apakah huruf yang datang selepas A?
+</p>
+
+<div class="activity-buttons">
+
+<button class="activity-btn bm"
+onclick="checkWritingAnswer2(this,false)">
+I
+</button>
+
+<button class="activity-btn english"
+onclick="checkWritingAnswer2(this,true)">
+E
+</button>
+
+<button class="activity-btn math"
+onclick="checkWritingAnswer2(this,false)">
+U
+</button>
+
+<button class="activity-btn sains"
+onclick="checkWritingAnswer2(this,false)">
+O
+</button>
+
+</div>
+
+<p id="writingFeedback2"
+style="font-weight:bold;margin-top:20px;">
+</p>
+
+
+<hr style="margin:35px 0;border:0;border-top:1px solid #eee;">
+
+
+<h2>✍️ Aktiviti 3: Cuba Tulis!</h2>
+
+<p style="margin:15px 0;">
+Gunakan jari atau mouse untuk menulis huruf:
+</p>
+
+<div style="
+font-size:45px;
+font-weight:bold;
+margin:10px;
+">
+A
+</div>
+
+
+<canvas
+id="writingCanvas"
+width="600"
+height="250"
+style="
+width:100%;
+max-width:600px;
+height:auto;
+background:#fffdf7;
+border:3px dashed #d8c9f5;
+border-radius:20px;
+touch-action:none;
+display:block;
+margin:20px auto;
+">
+</canvas>
+
+
+<div class="activity-buttons">
+
+<button
+class="activity-btn bm"
+onclick="clearWritingCanvas()">
+
+🧹 Padam
+
+</button>
+
+<button
+class="activity-btn sains"
+onclick="finishWriting()">
 
 ⭐ Saya Dah Cuba!
 
 </button>
 
+</div>
+
+<p id="canvasFeedback"
+style="font-weight:bold;margin-top:20px;">
+</p>
+
+</div>
+
 `
 },
 
-
+    
 tulisan:{
 title:"📝 Cantiknya Tulisan",
 subtitle:"Menulis huruf dengan kemas",
@@ -783,6 +921,10 @@ function openTopic(topic){
 
     if(topic === "pandainya"){
     startPandainyaQuiz();
+    }
+
+    if(topic === "menulis"){
+    setTimeout(setupWritingCanvas,100);
     }
 
 }
@@ -991,7 +1133,231 @@ function startPandainyaQuiz(){
 
 }
     
-function checkAnswer(button,correct){
+function checkWritingAnswer(button,correct){
+
+    const feedback =
+    document.getElementById("writingFeedback");
+
+    if(correct){
+
+        feedback.innerHTML =
+        "🎉 Syabas! Betul! A ialah a. ⭐";
+
+        feedback.style.color="#3c8c55";
+
+        button.style.transform="scale(1.08)";
+
+    }else{
+
+        feedback.innerHTML =
+        "💪 Hampir betul! Cuba lagi.";
+
+        feedback.style.color="#c77755";
+
+    }
+
+}
+
+
+function checkWritingAnswer2(button,correct){
+
+    const feedback =
+    document.getElementById("writingFeedback2");
+
+    if(correct){
+
+        feedback.innerHTML =
+        "🎉 Betul! Selepas A ialah E. 🌟";
+
+        feedback.style.color="#3c8c55";
+
+        button.style.transform="scale(1.08)";
+
+    }else{
+
+        feedback.innerHTML =
+        "💡 Cuba ingat semula: A, E, I, O, U.";
+
+        feedback.style.color="#c77755";
+
+    }
+
+}
+
+
+function setupWritingCanvas(){
+
+    const canvas =
+    document.getElementById("writingCanvas");
+
+    if(!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+
+    ctx.lineWidth = 5;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    let drawing = false;
+
+
+    function getPosition(event){
+
+        const rect =
+        canvas.getBoundingClientRect();
+
+        const scaleX =
+        canvas.width / rect.width;
+
+        const scaleY =
+        canvas.height / rect.height;
+
+        let clientX;
+        let clientY;
+
+        if(event.touches){
+
+            clientX = event.touches[0].clientX;
+            clientY = event.touches[0].clientY;
+
+        }else{
+
+            clientX = event.clientX;
+            clientY = event.clientY;
+
+        }
+
+        return {
+
+            x:(clientX - rect.left) * scaleX,
+
+            y:(clientY - rect.top) * scaleY
+
+        };
+
+    }
+
+
+    function startDrawing(event){
+
+        event.preventDefault();
+
+        drawing = true;
+
+        const pos =
+        getPosition(event);
+
+        ctx.beginPath();
+
+        ctx.moveTo(pos.x,pos.y);
+
+    }
+
+
+    function draw(event){
+
+        if(!drawing) return;
+
+        event.preventDefault();
+
+        const pos =
+        getPosition(event);
+
+        ctx.lineTo(pos.x,pos.y);
+
+        ctx.stroke();
+
+    }
+
+
+    function stopDrawing(){
+
+        drawing = false;
+
+        ctx.closePath();
+
+    }
+
+
+    canvas.addEventListener(
+        "mousedown",
+        startDrawing
+    );
+
+    canvas.addEventListener(
+        "mousemove",
+        draw
+    );
+
+    canvas.addEventListener(
+        "mouseup",
+        stopDrawing
+    );
+
+    canvas.addEventListener(
+        "mouseleave",
+        stopDrawing
+    );
+
+
+    canvas.addEventListener(
+        "touchstart",
+        startDrawing,
+        {passive:false}
+    );
+
+    canvas.addEventListener(
+        "touchmove",
+        draw,
+        {passive:false}
+    );
+
+    canvas.addEventListener(
+        "touchend",
+        stopDrawing
+    );
+
+}
+
+
+function clearWritingCanvas(){
+
+    const canvas =
+    document.getElementById("writingCanvas");
+
+    if(!canvas) return;
+
+    const ctx =
+    canvas.getContext("2d");
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    document.getElementById(
+        "canvasFeedback"
+    ).innerHTML = "";
+
+}
+
+
+function finishWriting(){
+
+    document.getElementById(
+        "canvasFeedback"
+    ).innerHTML =
+    "🌟 Hebat! Kamu sudah cuba menulis huruf A. Ms. Ainaa bangga dengan kamu! ❤️";
+
+    document.getElementById(
+        "canvasFeedback"
+    ).style.color="#3c8c55";
+
+    }
+    
+    function checkAnswer(button,correct){
 
     const feedback = document.getElementById("feedback");
 
