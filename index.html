@@ -1075,45 +1075,17 @@ title:"🌳 Taman Mini",
 subtitle:"Mengenal dan menyebut huruf konsonan",
 content:`
 
-<h2>🔤 Kenali Konsonan</h2>
+<h2>🌳 Jom ke Taman Mini!</h2>
 
 <p style="margin:15px 0;">
-Contoh huruf konsonan:
+Huruf konsonan ialah huruf selain huruf vokal.
 </p>
 
 <div style="font-size:32px;font-weight:bold;margin:25px;">
 B &nbsp; C &nbsp; D &nbsp; F &nbsp; G
 </div>
 
-<p>
-Sekarang cuba pilih huruf konsonan.
-</p>
-
-<div class="activity-buttons">
-
-<button class="activity-btn bm"
-onclick="checkAnswer(this,false)">
-A
-</button>
-
-<button class="activity-btn english"
-onclick="checkAnswer(this,true)">
-B
-</button>
-
-<button class="activity-btn math"
-onclick="checkAnswer(this,false)">
-E
-</button>
-
-<button class="activity-btn sains"
-onclick="checkAnswer(this,false)">
-I
-</button>
-
-</div>
-
-<p id="feedback" style="margin-top:20px;font-weight:bold;"></p>
+<div id="tamanQuiz"></div>
 
 `
 }
@@ -1139,6 +1111,10 @@ function openTopic(topic){
 
     if(topic === "menulis"){
     setTimeout(setupWritingCanvas,100);
+    }
+
+    if(topicKey === "taman"){
+    startTamanQuiz();
     }
 
 }
@@ -1743,6 +1719,175 @@ function cantiknyaAnswer5(button,correct){
 
     }
 
+}
+    const tamanQuestions = [
+    {
+        question:"Yang manakah huruf konsonan?",
+        options:["A","B","E","I"],
+        answer:"B"
+    },
+    {
+        question:"Yang manakah huruf konsonan?",
+        options:["O","U","C","A"],
+        answer:"C"
+    },
+    {
+        question:"Yang manakah huruf konsonan?",
+        options:["E","D","I","O"],
+        answer:"D"
+    },
+    {
+        question:"Yang manakah huruf konsonan?",
+        options:["A","F","E","U"],
+        answer:"F"
+    },
+    {
+        question:"Yang manakah huruf konsonan?",
+        options:["I","O","G","U"],
+        answer:"G"
+    }
+];
+
+let tamanIndex = 0;
+let tamanScore = 0;
+
+function startTamanQuiz(){
+
+    tamanIndex = 0;
+    tamanScore = 0;
+
+    showTamanQuestion();
+}
+
+function showTamanQuestion(){
+
+    const box = document.getElementById("tamanQuiz");
+
+    if(!box) return;
+
+    const q = tamanQuestions[tamanIndex];
+
+    box.innerHTML = `
+
+        <div class="activity-card">
+
+            <p style="font-weight:bold;">
+                Soalan ${tamanIndex + 1} daripada ${tamanQuestions.length}
+            </p>
+
+            <h3 style="margin:20px 0;">
+                ${q.question}
+            </h3>
+
+            <div class="activity-buttons">
+
+                ${q.options.map(option => `
+                    <button
+                        class="activity-btn"
+                        onclick="checkTamanAnswer('${option}')">
+                        ${option}
+                    </button>
+                `).join("")}
+
+            </div>
+
+            <div id="tamanFeedback"
+                 style="margin-top:20px;font-weight:bold;">
+            </div>
+
+        </div>
+    `;
+}
+
+function checkTamanAnswer(answer){
+
+    const q = tamanQuestions[tamanIndex];
+    const feedback = document.getElementById("tamanFeedback");
+
+    if(answer === q.answer){
+
+        tamanScore++;
+
+        feedback.innerHTML =
+            "🌟 Syabas! Jawapan kamu betul!";
+
+        feedback.style.color = "#4caf50";
+
+    }else{
+
+        feedback.innerHTML =
+            "💡 Hampir betul! Cuba fikir semula.";
+
+        feedback.style.color = "#e67e22";
+    }
+
+    document.querySelectorAll("#tamanQuiz .activity-btn")
+        .forEach(btn => btn.disabled = true);
+
+    setTimeout(() => {
+
+        tamanIndex++;
+
+        if(tamanIndex < tamanQuestions.length){
+
+            showTamanQuestion();
+
+        }else{
+
+            showTamanResult();
+
+        }
+
+    }, 1000);
+}
+
+function showTamanResult(){
+
+    const box = document.getElementById("tamanQuiz");
+
+    let stars = "";
+
+    if(tamanScore === 5){
+        stars = "⭐⭐⭐";
+    }else if(tamanScore >= 3){
+        stars = "⭐⭐";
+    }else{
+        stars = "⭐";
+    }
+
+    box.innerHTML = `
+
+        <div class="activity-card">
+
+            <h2>🎉 Tahniah!</h2>
+
+            <p style="font-size:26px;margin:20px 0;">
+                ${stars}
+            </p>
+
+            <p style="font-size:20px;">
+                Markah kamu:
+                <strong>${tamanScore}/5</strong>
+            </p>
+
+            <p style="margin:20px 0;">
+                ${
+                    tamanScore === 5
+                    ? "Hebat! Kamu sangat pandai mengenal huruf konsonan! 🌟"
+                    : tamanScore >= 3
+                    ? "Bagus! Teruskan berlatih! 💪"
+                    : "Tidak mengapa. Cuba lagi, Little Learner! 🌱"
+                }
+            </p>
+
+            <button
+                class="activity-btn"
+                onclick="startTamanQuiz()">
+                🔄 Cuba Lagi
+            </button>
+
+        </div>
+    `;
 }
 
 </script>
