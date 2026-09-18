@@ -509,60 +509,48 @@ const topics = {
 
 pandainya:{
 title:"🔤 Pandainya Arif",
-subtitle:"Membaca huruf vokal dan konsonan",
+subtitle:"Kenali huruf vokal dan konsonan",
 content:`
 
-<h2>🌟 Kenali Huruf</h2>
+<div class="lesson-box">
 
-<p style="margin:15px 0;">
+<h2>🌟 Jom Kenal Huruf!</h2>
+
+<p>
 Huruf vokal ialah:
 </p>
 
-<div style="font-size:35px;font-weight:bold;margin:20px;">
+<div style="font-size:38px;font-weight:bold;margin:20px;">
 A &nbsp; E &nbsp; I &nbsp; O &nbsp; U
 </div>
 
 <p>
-Selain huruf vokal, terdapat juga huruf konsonan.
+Huruf selain A, E, I, O dan U ialah huruf konsonan.
 </p>
+
+<div style="
+background:#fff7df;
+padding:15px;
+border-radius:15px;
+margin:20px 0;
+">
+💡 <b>Petua Ms. Ainaa:</b><br>
+Ingat lima huruf vokal:
+<strong>A E I O U</strong> ⭐
+</div>
 
 <hr style="margin:25px 0;border:0;border-top:1px solid #eee;">
 
-<h2>🎯 Cuba Kamu!</h2>
+<h2>🎯 Cabaran 5 Soalan</h2>
 
-<p style="margin:15px 0;">
-Yang manakah huruf vokal?
-</p>
+<div id="quizArea"></div>
 
-<div class="activity-buttons">
-
-<button class="activity-btn bm"
-onclick="checkAnswer(this,true)">
-A
-</button>
-
-<button class="activity-btn english"
-onclick="checkAnswer(this,false)">
-B
-</button>
-
-<button class="activity-btn math"
-onclick="checkAnswer(this,false)">
-M
-</button>
-
-<button class="activity-btn sains"
-onclick="checkAnswer(this,false)">
-T
-</button>
+<div id="quizResult"></div>
 
 </div>
 
-<p id="feedback" style="margin-top:20px;font-weight:bold;"></p>
-
 `
 },
-
 
 menulis:{
 title:"✍️ Belajar Menulis",
@@ -793,9 +781,216 @@ function openTopic(topic){
 
     showPage("topic");
 
+    if(topic === "pandainya"){
+    startPandainyaQuiz();
+    }
+
 }
 
+function startPandainyaQuiz(){
 
+    const questions = [
+
+        {
+            question:"Yang manakah huruf vokal?",
+            options:["A","B","C","D"],
+            answer:"A"
+        },
+
+        {
+            question:"Yang manakah huruf konsonan?",
+            options:["E","M","I","O"],
+            answer:"M"
+        },
+
+        {
+            question:"Yang manakah huruf vokal?",
+            options:["K","L","U","T"],
+            answer:"U"
+        },
+
+        {
+            question:"Yang manakah huruf konsonan?",
+            options:["A","P","E","I"],
+            answer:"P"
+        },
+
+        {
+            question:"Yang manakah huruf vokal?",
+            options:["R","S","O","T"],
+            answer:"O"
+        }
+
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const quizArea = document.getElementById("quizArea");
+    const quizResult = document.getElementById("quizResult");
+
+    function showQuestion(){
+
+        const q = questions[currentQuestion];
+
+        quizArea.innerHTML = `
+
+        <div style="
+        background:#f8f5ff;
+        padding:20px;
+        border-radius:18px;
+        margin-top:20px;
+        ">
+
+        <p style="font-weight:bold;">
+        Soalan ${currentQuestion + 1} daripada ${questions.length}
+        </p>
+
+        <h3 style="margin:20px 0;">
+        ${q.question}
+        </h3>
+
+        <div class="activity-buttons">
+
+        ${q.options.map(option => `
+
+            <button
+            class="activity-btn"
+            onclick="answerPandainya('${option}')">
+
+            ${option}
+
+            </button>
+
+        `).join("")}
+
+        </div>
+
+        <p id="quizFeedback"
+        style="font-weight:bold;margin-top:20px;">
+        </p>
+
+        </div>
+
+        `;
+
+    }
+
+    window.answerPandainya = function(answer){
+
+        const q = questions[currentQuestion];
+
+        const feedback =
+        document.getElementById("quizFeedback");
+
+        const buttons =
+        document.querySelectorAll("#quizArea .activity-btn");
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+        });
+
+        if(answer === q.answer){
+
+            score++;
+
+            feedback.innerHTML =
+            "🎉 Syabas! Jawapan kamu betul! ⭐";
+
+            feedback.style.color="#3c8c55";
+
+        }else{
+
+            feedback.innerHTML =
+            "💪 Hampir betul! Jawapan yang betul ialah "
+            + q.answer + ".";
+
+            feedback.style.color="#c77755";
+
+        }
+
+        setTimeout(() => {
+
+            currentQuestion++;
+
+            if(currentQuestion < questions.length){
+
+                showQuestion();
+
+            }else{
+
+                showResult();
+
+            }
+
+        },1000);
+
+    };
+
+
+    function showResult(){
+
+        quizArea.innerHTML = "";
+
+        let stars = "";
+
+        if(score === 5){
+            stars = "⭐⭐⭐⭐⭐";
+        }else if(score >= 3){
+            stars = "⭐⭐⭐";
+        }else{
+            stars = "⭐";
+        }
+
+        quizResult.innerHTML = `
+
+        <div style="
+        margin-top:25px;
+        padding:25px;
+        background:#fff7df;
+        border-radius:20px;
+        text-align:center;
+        ">
+
+        <h2>🏆 Tahniah!</h2>
+
+        <p style="font-size:35px;">
+        ${stars}
+        </p>
+
+        <h3>
+        Skor kamu: ${score} / ${questions.length}
+        </h3>
+
+        <p style="margin-top:15px;">
+        ${
+            score === 5
+            ? "Hebat! Ms. Ainaa bangga dengan kamu! 🌟"
+            : score >= 3
+            ? "Bagus! Teruskan berlatih! 💪"
+            : "Tidak mengapa. Cuba lagi dan jangan berputus asa! ❤️"
+        }
+        </p>
+
+        <button
+        class="activity-btn bm"
+        style="margin-top:20px;"
+        onclick="startPandainyaQuiz()">
+
+        🔄 Cuba Lagi
+
+        </button>
+
+        </div>
+
+        `;
+
+    }
+
+    showQuestion();
+
+    }
+}
 function checkAnswer(button,correct){
 
     const feedback = document.getElementById("feedback");
