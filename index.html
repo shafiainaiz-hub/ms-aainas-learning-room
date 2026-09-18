@@ -1,33 +1,523 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ms. Ainaa’s Learning Room</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f7f5ff;color:#293047}button{font:inherit}.wrap{max-width:1050px;margin:auto;padding:18px}.top,.screen,.subject,.unit{background:#fff;border-radius:26px;box-shadow:0 8px 25px #0000000d}.top{padding:24px;margin-bottom:16px}.brand{font-weight:800;color:#7868df;letter-spacing:.5px}.sub{color:#777b8f;line-height:1.6}.stats{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}.pill{background:#f1effc;border-radius:999px;padding:8px 12px}.progress{height:12px;background:#e9e8f0;border-radius:99px;overflow:hidden}.fill{height:100%;background:#8c7be8;width:0}.journey{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.step{padding:7px 10px;border-radius:999px;background:#eeeefa;color:#70748a;font-size:12px}.step.active{background:#8c7be8;color:#fff}.screen{padding:25px}.hidden{display:none}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.subject,.unit{border:0;padding:20px;text-align:left;cursor:pointer;transition:.2s}.subject:hover,.unit:hover{transform:translateY(-3px)}.icon{font-size:40px}.subject h3,.unit h3{margin:10px 0 5px}.muted{color:#777b8f}.bm{border-top:6px solid #f3a9c7}.eng{border-top:6px solid #9fcaf2}.math{border-top:6px solid #f4d477}.sains{border-top:6px solid #a9ddbd}.unit{border-top:6px solid #8d7cf0}.btn{border:0;border-radius:14px;padding:12px 18px;background:#8c7be8;color:white;font-weight:700;cursor:pointer}.secondary{background:#ece9fb;color:#5148a5}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.learn{background:#f4f0ff;border-radius:18px;padding:18px;margin:14px 0;line-height:1.6}.q{margin:15px 0;padding:18px;background:#faf9ff;border-radius:18px}.opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}.opt{background:#fff;border:2px solid #e8e6f2;border-radius:14px;padding:12px;cursor:pointer}.opt.correct{border-color:#62b989;background:#eaf9f0}.opt.wrong{border-color:#e98b9d;background:#fff0f3}.feedback{min-height:24px;font-weight:700;margin-top:10px}.center{text-align:center}.big{font-size:55px}.badge{display:inline-block;background:#fff8dc;border-radius:18px;padding:18px;margin:8px}.footer{text-align:center;color:#8a8da0;padding:25px;font-size:13px}@media(max-width:650px){.grid,.opts{grid-template-columns:1fr}.screen{padding:18px}}
-</style></head>
-<body><div class="wrap">
-<header class="top"><div class="brand">MS. AINAA’S LEARNING ROOM</div><h1 id="title">🎓 Darjah 1</h1><div class="sub" id="subtitle">Learn • Explore • Grow</div><div class="stats"><span class="pill">⭐ <b id="stars">0</b> Bintang</span><span class="pill">🏆 <b id="done">0</b> Aktiviti selesai</span><span class="pill">📊 <b id="pct">0</b>%</span></div><div class="progress"><div class="fill" id="bar"></div></div><div class="journey" id="journey"></div></header>
-<main class="screen" id="app"></main><div class="footer">Learn • Explore • Grow · Ms. Ainaa’s Learning Room</div></div>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#fff9f5,#f5f1ff);
+    color:#3f4352;
+    min-height:100vh;
+}
+
+header{
+    text-align:center;
+    padding:45px 20px 30px;
+    background:rgba(255,255,255,.8);
+    border-bottom:1px solid #eee;
+}
+
+.logo{
+    font-size:clamp(30px,7vw,55px);
+    font-weight:800;
+}
+
+.tagline{
+    margin-top:10px;
+    color:#777;
+    letter-spacing:2px;
+    font-size:17px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.welcome{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.welcome h1{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.welcome p{
+    color:#777;
+    font-size:17px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    border:0;
+    border-radius:25px;
+    padding:30px 20px;
+    min-height:190px;
+    cursor:pointer;
+    background:white;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.2s;
+    color:#3f4352;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 30px rgba(0,0,0,.12);
+}
+
+.card-icon{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.card h2{
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#777;
+}
+
+.darjah{
+    background:linear-gradient(145deg,#dceefa,#fff);
+}
+
+.bm{
+    background:linear-gradient(145deg,#f8dce5,#fff);
+}
+
+.english{
+    background:linear-gradient(145deg,#dceefa,#fff);
+}
+
+.math{
+    background:linear-gradient(145deg,#fff0bd,#fff);
+}
+
+.sains{
+    background:linear-gradient(145deg,#dcefdc,#fff);
+}
+
+.unit-box{
+    background:white;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.07);
+}
+
+.unit-box h2{
+    margin-bottom:18px;
+}
+
+.unit-btn{
+    width:100%;
+    border:0;
+    border-radius:17px;
+    padding:18px;
+    margin-top:12px;
+    background:#f6f2ff;
+    color:#3f4352;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    text-align:left;
+}
+
+.unit-btn:hover{
+    background:#ebe3ff;
+}
+
+.back{
+    border:0;
+    background:white;
+    padding:12px 18px;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:bold;
+    margin-bottom:25px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.activity{
+    text-align:center;
+}
+
+.activity-card{
+    background:white;
+    padding:35px 25px;
+    border-radius:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.activity-buttons{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    margin-top:25px;
+}
+
+.activity-btn{
+    border:0;
+    padding:22px 15px;
+    border-radius:20px;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🌸 Ms. Ainaa’s Learning Room
+</div>
+
+<div class="tagline">
+Learn • Explore • Grow
+</div>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="page active">
+
+<div class="welcome">
+
+<h1>Selamat Datang, Little Learner! ⭐</h1>
+
+<p>
+Jom belajar, meneroka dan berkembang bersama Ms. Ainaa.
+</p>
+
+</div>
+
+
+<div class="cards">
+
+<button class="card darjah" onclick="showPage('darjah1')">
+
+<div class="card-icon">
+🎓
+</div>
+
+<h2>Darjah 1</h2>
+
+<p>
+Mulakan pembelajaran kamu di sini!
+</p>
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= DARJAH 1 ================= -->
+
+<section id="darjah1" class="page">
+
+<button class="back" onclick="showPage('home')">
+← Kembali ke Laman Utama
+</button>
+
+<div class="welcome">
+
+<h1>🎓 Darjah 1</h1>
+
+<p>
+Pilih subjek yang kamu mahu belajar.
+</p>
+
+</div>
+
+
+<div class="cards">
+
+
+<button class="card bm" onclick="showPage('bm')">
+
+<div class="card-icon">
+📚
+</div>
+
+<h2>Bahasa Melayu</h2>
+
+<p>
+Membaca • Menulis • Memahami
+</p>
+
+</button>
+
+
+<button class="card english">
+
+<div class="card-icon">
+🇬🇧
+</div>
+
+<h2>English</h2>
+
+<p>
+Akan dibangunkan
+</p>
+
+</button>
+
+
+<button class="card math">
+
+<div class="card-icon">
+🔢
+</div>
+
+<h2>Matematik</h2>
+
+<p>
+Akan dibangunkan
+</p>
+
+</button>
+
+
+<button class="card sains">
+
+<div class="card-icon">
+🔬
+</div>
+
+<h2>Sains</h2>
+
+<p>
+Akan dibangunkan
+</p>
+
+</button>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= BAHASA MELAYU ================= -->
+
+<section id="bm" class="page">
+
+<button class="back" onclick="showPage('darjah1')">
+← Kembali ke Darjah 1
+</button>
+
+
+<div class="welcome">
+
+<h1>📚 Bahasa Melayu Tahun 1</h1>
+
+<p>
+Tema 1: Keluarga Penyayang
+</p>
+
+</div>
+
+
+<div class="unit-box">
+
+<h2>🌷 Tema 1: Keluarga Penyayang</h2>
+
+
+<button class="unit-btn" onclick="showPage('unit1')">
+
+👨‍👩‍👧 Unit 1: Keluargaku Sayang
+
+</button>
+
+
+<button class="unit-btn">
+
+🎈 Unit 2: Bergembira dengan Keluarga
+
+</button>
+
+
+<button class="unit-btn">
+
+🌾 Unit 3: Bercuti di Kampung
+
+</button>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= UNIT 1 ================= -->
+
+<section id="unit1" class="page">
+
+<button class="back" onclick="showPage('bm')">
+← Kembali ke Bahasa Melayu
+</button>
+
+
+<div class="welcome">
+
+<h1>
+👨‍👩‍👧 Unit 1: Keluargaku Sayang
+</h1>
+
+<p>
+Jom belajar bersama Ms. Ainaa! ⭐
+</p>
+
+</div>
+
+
+<div class="activity-card">
+
+<h2>
+Pilih Aktiviti
+</h2>
+
+<p style="margin-top:10px;color:#777;">
+Belajar • Berlatih • Bermain • Berfikir
+</p>
+
+
+<div class="activity-buttons">
+
+
+<button class="activity-btn bm"
+onclick="alert('📖 Bahagian Learn akan menjadi modul pembelajaran interaktif Unit 1.')">
+
+📖 Learn
+
+</button>
+
+
+<button class="activity-btn english"
+onclick="alert('🎯 Bahagian Practise akan mengandungi soalan interaktif dan maklum balas segera.')">
+
+🎯 Practise
+
+</button>
+
+
+<button class="activity-btn math"
+onclick="alert('🎮 Mini-game Unit 1 akan berada di sini.')">
+
+🎮 Play
+
+</button>
+
+
+<button class="activity-btn sains"
+onclick="alert('🧠 Aktiviti Think akan menguji kefahaman murid.')">
+
+🧠 Think
+
+</button>
+
+
+<button class="activity-btn bm"
+onclick="alert('⭐ Challenge akan memberikan cabaran tambahan.')">
+
+⭐ Challenge
+
+</button>
+
+
+<button class="activity-btn english"
+onclick="alert('📝 Checkpoint akan menyemak kemajuan murid.')">
+
+📝 Checkpoint
+
+</button>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+</div>
+
+
+<footer>
+
+🌸 Ms. Ainaa’s Learning Room
+<br>
+Learn • Explore • Grow
+
+</footer>
+
+
+
 <script>
-const phases=[['learn','📖 Learn'],['practice','🎯 Practise'],['play','🎮 Play'],['think','🧠 Think'],['challenge','⭐ Challenge'],['checkpoint','📝 Checkpoint'],['reward','🏆 Reward']];
-const data={
-practice:[['Pilih vokal','Yang manakah huruf vokal?',['a','b','m','s'],'a'],['Huruf awal','Huruf awal bagi perkataan "buku" ialah…',['b','d','k','u'],'b'],['Lengkapkan perkataan','b _ ju',['a','e','i','o'],'a'],['Lengkapkan perkataan','b _ ku',['a','e','i','o'],'u'],['Ejaan','Pilih ejaan yang betul.',['buku','boko','bukae','biku'],'buku'],['Suku kata','"baju" boleh dipecahkan menjadi…',['ba-ju','b-aj-u','baj-u','ba-j-u'],'ba-ju'],['Konsonan','Pilih huruf konsonan.',['a','e','m','i'],'m'],['Lengkapkan','_bu',['i','a','o','u'],'i'],['Huruf akhir','Huruf akhir bagi "baju" ialah…',['a','j','u','b'],'u'],['Ayat','Pilih ayat yang betul.',['Ini ibu.','Ini ibu','ini ibu.','Ibu ini'],'Ini ibu.']],
-play:[['Tangkap Vokal','Cari huruf vokal.',['A','B','D','K'],'A'],['Tangkap Vokal','Cari huruf vokal.',['M','S','O','T'],'O'],['Cari Konsonan','Cari huruf konsonan.',['A','I','U','B'],'B'],['Bina Suku Kata','Lengkapkan "ba__".',['ju','ki','mo','se'],'ju'],['Bina Perkataan','ba + ju = ?',['baju','buku','bola','bapa'],'baju']],
-think:[['Situasi keluarga','Adik mahu membantu ibu. Apakah tindakan yang sesuai?',['Membantu ibu','Menyepahkan barang','Menjerit','Berlari keluar'],'Membantu ibu'],['Ahli keluarga','Pilih perkataan yang menunjukkan ahli keluarga.',['ibu','meja','buku','bola'],'ibu'],['Suku kata','Perkataan "baju" = ?',['ba-ju','b-aj-u','baj-u','ba-j-u'],'ba-ju'],['Ayat','Pilih ayat yang bermula dengan huruf besar dan berakhir dengan noktah.',['saya baca buku','Saya baca buku.','saya Baca Buku.','Saya baca buku'],'Saya baca buku.'],['Keluarga','Lengkapkan: Saya sayang ____ saya.',['keluarga','kerusi','pensel','tingkap'],'keluarga']],
-challenge:[['Cabaran 1','Pilih perkataan yang mempunyai 2 suku kata.',['ayah','keluarga','ibu','bola'],'keluarga'],['Cabaran 2','Pilih perkataan yang mempunyai huruf vokal a dan u.',['baju','buku','bibi','susu'],'baju'],['Cabaran 3','Pilih ayat yang betul.',['Saya sayang ibu.','Ibu saya sayang.','Sayang ibu saya.','Saya ibu sayang.'],'Saya sayang ibu.'],['Cabaran 4','Pilih perkataan yang bermula dengan konsonan dan berakhir dengan vokal.',['baju','ibu','ayam','emak'],'baju'],['Cabaran 5','Pilih ayat yang sesuai dengan tema keluarga penyayang.',['Saya sayang keluarga saya.','Saya buang buku.','Saya lari dari rumah.','Saya tidak membantu.'],'Saya sayang keluarga saya.']],
-checkpoint:[['1. Vokal','Yang manakah huruf vokal?',['A','B','C','D'],'A'],['2. Vokal','Yang manakah BUKAN vokal?',['a','e','m','u'],'m'],['3. Konsonan','Pilih konsonan.',['i','o','s','a'],'s'],['4. Suku kata','"baju" = ?',['ba-ju','b-aj-u','baj-u','ba-j-u'],'ba-ju'],['5. Perkataan','Pilih ejaan yang betul.',['buku','boko','bukae','biku'],'buku'],['6. Perkataan','Pilih perkataan yang bermula dengan b.',['ibu','baju','emak','ayah'],'baju'],['7. Ayat','Pilih ayat yang betul.',['Ini ibu.','Ini ibu','ini ibu.','Ibu ini'],'Ini ibu.'],['8. Keluarga','Lengkapkan: Saya sayang ____ saya.',['keluarga','meja','bola','buku'],'keluarga'],['9. Suku kata','"bola" = ?',['bo-la','bol-a','b-ola','bo-l-a'],'bo-la'],['10. Nilai','Apakah tindakan penyayang?',['Membantu keluarga','Menyakiti orang','Membuang barang','Menjerit'],'Membantu keluarga']]
-};
-const learn=[['Vokal','Huruf vokal ialah a, e, i, o dan u.','A E I O U'],['Konsonan','Huruf selain vokal ialah konsonan. Contohnya b, d, k, m dan s.','B D K M S'],['Suku kata','Perkataan boleh dibaca dengan memecahkannya kepada suku kata.','ba · ju · bu · ku · su'],['Perkataan','Baca perkataan mudah yang berkaitan dengan kehidupan harian.','ibu · ayah · buku · baju · bola · topi'],['Ayat mudah','Baca ayat pendek dengan sebutan yang jelas.','Ini ibu. · Ini buku. · Saya sayang keluarga.']];
-let state=JSON.parse(localStorage.getItem('ainaLearningRoom')||'null')||{stars:0,done:[],page:'home',phase:0};
-function save(){localStorage.setItem('ainaLearningRoom',JSON.stringify(state));updateTop()}
-function updateTop(){document.getElementById('stars').textContent=state.stars;document.getElementById('done').textContent=state.done.length;let total=35,p=Math.min(100,Math.round(state.done.length/total*100));document.getElementById('pct').textContent=p;document.getElementById('bar').style.width=p+'%';document.getElementById('journey').innerHTML=state.page==='unit'?phases.map((x,i)=>`<span class="step ${i===state.phase?'active':''}">${x[1]}</span>`).join(''):''}
-function home(){state.page='home';save();document.getElementById('title').textContent='🎓 Darjah 1';document.getElementById('subtitle').textContent='Learn • Explore • Grow';document.getElementById('app').innerHTML=`<h2>👋 Hai, Little Learner!</h2><p class="muted">Jom belajar, bermain dan teroka bersama Ms. Ainaa. Pilih subjek untuk bermula. 🌈</p><div class="grid"><button class="subject bm" onclick="subject('bm')"><div class="icon">📖</div><h3>Bahasa Melayu</h3><p class="muted">Membaca • Menulis • Tatabahasa</p></button><button class="subject eng" onclick="coming('English')"><div class="icon">🇬🇧</div><h3>English</h3><p class="muted">Words • Reading • Grammar</p></button><button class="subject math" onclick="coming('Matematik')"><div class="icon">🔢</div><h3>Matematik</h3><p class="muted">Nombor • Operasi • Bentuk</p></button><button class="subject sains" onclick="coming('Sains')"><div class="icon">🔬</div><h3>Sains</h3><p class="muted">Teroka • Perhati • Fikir</p></button></div><div class="learn"><b>💡 Ms. Ainaa’s Corner</b><p>Belajar sedikit demi sedikit. Yang penting, terus mencuba! 💪⭐</p></div>`;updateTop()}
-function subject(){state.page='subject';save();document.getElementById('title').textContent='📖 Bahasa Melayu Tahun 1';document.getElementById('subtitle').textContent='Tema 1: Keluarga Penyayang';document.getElementById('app').innerHTML=`<button class="btn secondary" onclick="home()">← Kembali</button><h2>🌷 Tema 1: Keluarga Penyayang</h2><p class="muted">Pilih unit untuk memulakan pembelajaran.</p><div class="grid"><button class="unit" onclick="unit()"><div class="icon">👨‍👩‍👧‍👦</div><h3>Unit 1: Keluargaku Sayang</h3><p class="muted">Mulakan perjalanan pembelajaran Unit 1.</p></button><button class="unit" onclick="coming('Unit 2')"><div class="icon">🎉</div><h3>Unit 2: Bergembira dengan Keluarga</h3><p class="muted">Akan dibuka selepas Unit 1.</p></button><button class="unit" onclick="coming('Unit 3')"><div class="icon">🏡</div><h3>Unit 3: Bercuti di Kampung</h3><p class="muted">Akan dibuka selepas Unit 1.</p></button></div>`;updateTop()}
-function unit(){state.page='unit';state.phase=0;save();document.getElementById('title').textContent='📖 Bahasa Melayu Tahun 1';document.getElementById('subtitle').textContent='Tema 1: Keluarga Penyayang · Unit 1: Keluargaku Sayang';renderPhase(0)}
-function renderPhase(pi){state.page='unit';state.phase=pi;save();let key=phases[pi][0],app=document.getElementById('app');if(key==='learn'){app.innerHTML=`<button class="btn secondary" onclick="subject()">← Unit</button><h2>📖 Jom Belajar!</h2><p class="muted">Mari kenali asas huruf, suku kata, perkataan dan ayat.</p>${learn.map(x=>`<div class="learn"><h3>${x[0]}</h3><p>${x[1]}</p><b>${x[2]}</b></div>`).join('')}<div class="actions"><button class="btn" onclick="renderPhase(1)">Dah faham! Ke Latihan 🎯</button></div>`;return}if(key==='reward'){reward();return}startQuiz(key)}
-function startQuiz(key){let qs=data[key],i=0,score=0,app=document.getElementById('app');function show(){let q=qs[i];app.innerHTML=`<h2>${phases[state.phase][1]}</h2><p class="muted">Aktiviti ${i+1} daripada ${qs.length}</p><div class="q"><h3>${q[0]}</h3><p>${q[1]}</p><div class="opts">${q[2].map(o=>`<button class="opt" onclick='answer(this,${JSON.stringify(o)},${JSON.stringify(q[3])})'>${o}</button>`).join('')}</div><div class="feedback" id="fb"></div></div>`}window.answer=(el,val,correct)=>{let fb=document.getElementById('fb');document.querySelectorAll('.opt').forEach(b=>b.disabled=true);let id=key+'-'+i;if(val===correct){el.classList.add('correct');fb.textContent='🌟 Syabas! Jawapan kamu betul!';score++;if(!state.done.includes(id)){state.done.push(id);state.stars++;}}else{el.classList.add('wrong');fb.textContent='Hampir betul! Cuba sekali lagi. 💪';document.querySelectorAll('.opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct')});if(!state.done.includes(id))state.done.push(id)}save();setTimeout(()=>{i++;if(i<qs.length)show();else{app.innerHTML=`<div class="center"><div class="big">🎉</div><h2>Aktiviti selesai!</h2><p>Skor kamu: <b>${score}/${qs.length}</b></p><p>⭐ Bintang diperoleh: <b>${score}</b></p><div class="actions" style="justify-content:center"><button class="btn" onclick="renderPhase(${Math.min(6,state.phase+1)})">Teruskan →</button></div></div>`}},650)}show()}
-function reward(){state.page='unit';state.phase=6;save();document.getElementById('app').innerHTML=`<div class="center"><div class="big">🏆</div><h2>Tahniah, Little Learner!</h2><p>Kamu telah melengkapkan perjalanan Unit 1.</p><div class="badge">🌟<br><b>Bintang Keluarga</b><br><small>Unit 1 selesai</small></div><p>Jumlah bintang: ⭐ <b>${state.stars}</b></p><div class="actions" style="justify-content:center"><button class="btn secondary" onclick="subject()">Kembali ke Unit</button><button class="btn" onclick="renderPhase(0)">Belajar Semula 📖</button></div></div>`}
-function coming(name){alert(name+' sedang kita bina. Fokus sekarang: Bahasa Melayu → Tema 1 → Unit 1. 🚀')}
-updateTop();home();
-</script></body></html>
+
+function showPage(pageId){
+
+    document.querySelectorAll(".page").forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
