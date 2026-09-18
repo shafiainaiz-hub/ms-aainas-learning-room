@@ -724,51 +724,265 @@ style="font-weight:bold;margin-top:20px;">
 `
 },
 
-    
 tulisan:{
 title:"📝 Cantiknya Tulisan",
-subtitle:"Menulis huruf dengan kemas",
+subtitle:"Kenali huruf besar dan huruf kecil",
 content:`
+
+<div class="lesson-box">
 
 <h2>🌸 Tulisan Kemas</h2>
 
 <p style="margin:15px 0;">
-Pilih huruf yang sama.
+Huruf besar dan huruf kecil perlu ditulis dengan bentuk yang betul.
 </p>
 
-<div style="font-size:40px;margin:25px;">
-A
+<div style="
+display:flex;
+justify-content:center;
+gap:35px;
+font-size:40px;
+font-weight:bold;
+margin:25px;
+">
+<span>A</span>
+<span>a</span>
+<span>E</span>
+<span>e</span>
+</div>
+
+
+<div style="
+background:#f8f5ff;
+padding:18px;
+border-radius:18px;
+margin:20px 0;
+">
+💡 <b>Petua Ms. Ainaa:</b><br>
+Perhatikan bentuk huruf besar dan huruf kecil dengan teliti. 👀⭐
+</div>
+
+
+<hr style="margin:30px 0;border:0;border-top:1px solid #eee;">
+
+
+<h2>🎯 Cabaran 1: Cari Pasangan</h2>
+
+<p style="margin:15px 0;">
+Pilih huruf kecil yang sepadan dengan huruf besar.
+</p>
+
+<div style="
+font-size:50px;
+font-weight:bold;
+margin:20px;
+">
+E
 </div>
 
 <div class="activity-buttons">
 
 <button class="activity-btn bm"
-onclick="checkAnswer(this,true)">
+onclick="cantiknyaAnswer(this,false)">
 a
 </button>
 
 <button class="activity-btn english"
-onclick="checkAnswer(this,false)">
+onclick="cantiknyaAnswer(this,true)">
 e
 </button>
 
 <button class="activity-btn math"
-onclick="checkAnswer(this,false)">
+onclick="cantiknyaAnswer(this,false)">
 i
 </button>
 
 <button class="activity-btn sains"
-onclick="checkAnswer(this,false)">
+onclick="cantiknyaAnswer(this,false)">
 o
 </button>
 
 </div>
 
-<p id="feedback" style="margin-top:20px;font-weight:bold;"></p>
+<p id="cantiknyaFeedback"
+style="font-weight:bold;margin-top:20px;">
+</p>
+
+
+<hr style="margin:35px 0;border:0;border-top:1px solid #eee;">
+
+
+<h2>🔤 Cabaran 2: Huruf Apakah Ini?</h2>
+
+<p style="margin:15px 0;">
+Pilih huruf besar yang sepadan dengan <b>u</b>.
+</p>
+
+<div style="
+font-size:50px;
+font-weight:bold;
+margin:20px;
+">
+u
+</div>
+
+<div class="activity-buttons">
+
+<button class="activity-btn bm"
+onclick="cantiknyaAnswer2(this,false)">
+A
+</button>
+
+<button class="activity-btn english"
+onclick="cantiknyaAnswer2(this,false)">
+E
+</button>
+
+<button class="activity-btn math"
+onclick="cantiknyaAnswer2(this,false)">
+I
+</button>
+
+<button class="activity-btn sains"
+onclick="cantiknyaAnswer2(this,true)">
+U
+</button>
+
+</div>
+
+<p id="cantiknyaFeedback2"
+style="font-weight:bold;margin-top:20px;">
+</p>
+
+
+<hr style="margin:35px 0;border:0;border-top:1px solid #eee;">
+
+
+<h2>🌟 Cabaran 3: Susun Huruf Vokal</h2>
+
+<p style="margin:15px 0;">
+Pilih huruf yang datang selepas <b>E</b>.
+</p>
+
+<div style="
+font-size:45px;
+font-weight:bold;
+margin:20px;
+">
+A → E → ?
+</div>
+
+<div class="activity-buttons">
+
+<button class="activity-btn bm"
+onclick="cantiknyaAnswer3(this,false)">
+O
+</button>
+
+<button class="activity-btn english"
+onclick="cantiknyaAnswer3(this,true)">
+I
+</button>
+
+<button class="activity-btn math"
+onclick="cantiknyaAnswer3(this,false)">
+U
+</button>
+
+<button class="activity-btn sains"
+onclick="cantiknyaAnswer3(this,false)">
+A
+</button>
+
+</div>
+
+<p id="cantiknyaFeedback3"
+style="font-weight:bold;margin-top:20px;">
+</p>
+
+
+<hr style="margin:35px 0;border:0;border-top:1px solid #eee;">
+
+
+<h2>⭐ Cabaran 4</h2>
+
+<p style="margin:15px 0;">
+Yang manakah pasangan huruf yang betul?
+</p>
+
+<div class="activity-buttons">
+
+<button class="activity-btn bm"
+onclick="cantiknyaAnswer4(this,true)">
+O — o
+</button>
+
+<button class="activity-btn english"
+onclick="cantiknyaAnswer4(this,false)">
+A — e
+</button>
+
+<button class="activity-btn math"
+onclick="cantiknyaAnswer4(this,false)">
+I — u
+</button>
+
+<button class="activity-btn sains"
+onclick="cantiknyaAnswer4(this,false)">
+E — a
+</button>
+
+</div>
+
+<p id="cantiknyaFeedback4"
+style="font-weight:bold;margin-top:20px;">
+</p>
+
+
+<hr style="margin:35px 0;border:0;border-top:1px solid #eee;">
+
+
+<h2>🏆 Cabaran 5</h2>
+
+<p style="margin:15px 0;">
+Yang manakah <b>huruf besar</b>?
+</p>
+
+<div class="activity-buttons">
+
+<button class="activity-btn bm"
+onclick="cantiknyaAnswer5(this,false)">
+i
+</button>
+
+<button class="activity-btn english"
+onclick="cantiknyaAnswer5(this,true)">
+I
+</button>
+
+<button class="activity-btn math"
+onclick="cantiknyaAnswer5(this,false)">
+o
+</button>
+
+<button class="activity-btn sains"
+onclick="cantiknyaAnswer5(this,false)">
+e
+</button>
+
+</div>
+
+<p id="cantiknyaFeedback5"
+style="font-weight:bold;margin-top:20px;">
+</p>
+
+
+<div id="cantiknyaResult"></div>
+
+</div>
 
 `
 },
-
 
 sebutlah:{
 title:"🗣️ Sebutlah Arif",
@@ -1356,6 +1570,156 @@ function finishWriting(){
     ).style.color="#3c8c55";
 
     }
+
+    function cantiknyaAnswer(button,correct){
+
+    const feedback =
+    document.getElementById("cantiknyaFeedback");
+
+    if(correct){
+
+        feedback.innerHTML =
+        "🎉 Syabas! Betul! ⭐";
+
+        feedback.style.color="#3c8c55";
+
+    }else{
+
+        feedback.innerHTML =
+        "💪 Hampir betul! Cuba lagi.";
+
+        feedback.style.color="#c77755";
+
+    }
+
+}
+
+
+function cantiknyaAnswer2(button,correct){
+
+    const feedback =
+    document.getElementById("cantiknyaFeedback2");
+
+    if(correct){
+
+        feedback.innerHTML =
+        "🌟 Betul! U ialah pasangan kepada u.";
+
+        feedback.style.color="#3c8c55";
+
+    }else{
+
+        feedback.innerHTML =
+        "💡 Cuba perhatikan huruf u sekali lagi.";
+
+        feedback.style.color="#c77755";
+
+    }
+
+}
+
+
+function cantiknyaAnswer3(button,correct){
+
+    const feedback =
+    document.getElementById("cantiknyaFeedback3");
+
+    if(correct){
+
+        feedback.innerHTML =
+        "🎉 Hebat! Selepas E ialah I.";
+
+        feedback.style.color="#3c8c55";
+
+    }else{
+
+        feedback.innerHTML =
+        "💡 Ingat urutan: A → E → I → O → U.";
+
+        feedback.style.color="#c77755";
+
+    }
+
+}
+
+
+function cantiknyaAnswer4(button,correct){
+
+    const feedback =
+    document.getElementById("cantiknyaFeedback4");
+
+    if(correct){
+
+        feedback.innerHTML =
+        "🏆 Betul! O dan o ialah pasangan.";
+
+        feedback.style.color="#3c8c55";
+
+    }else{
+
+        feedback.innerHTML =
+        "💪 Cuba semak pasangan huruf itu.";
+
+        feedback.style.color="#c77755";
+
+    }
+
+}
+
+
+function cantiknyaAnswer5(button,correct){
+
+    const feedback =
+    document.getElementById("cantiknyaFeedback5");
+
+    if(correct){
+
+        feedback.innerHTML =
+        "🎉 Betul! I ialah huruf besar.";
+
+        feedback.style.color="#3c8c55";
+
+        document.getElementById(
+            "cantiknyaResult"
+        ).innerHTML = `
+
+        <div style="
+        margin-top:30px;
+        padding:25px;
+        background:#fff7df;
+        border-radius:20px;
+        text-align:center;
+        ">
+
+        <h2>🏆 Tahniah!</h2>
+
+        <p style="font-size:35px;">
+        ⭐⭐⭐⭐⭐
+        </p>
+
+        <p>
+        Kamu sudah selesai semua cabaran
+        <b>Cantiknya Tulisan</b>!
+        </p>
+
+        <p style="margin-top:12px;">
+        🌸 Teruskan menulis dengan kemas!
+        </p>
+
+        </div>
+
+        `;
+
+    }else{
+
+        feedback.innerHTML =
+        "💡 Huruf besar ditulis seperti I.";
+
+        feedback.style.color="#c77755";
+
+    }
+
+}
     
     function checkAnswer(button,correct){
 
