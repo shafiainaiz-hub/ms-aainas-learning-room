@@ -989,30 +989,59 @@ title:"🗣️ Sebutlah Arif",
 subtitle:"Menyebut perkataan yang mengandungi huruf vokal",
 content:`
 
-<h2>🔊 Mari Sebut</h2>
+<div class="lesson-box">
+
+<h2>🔊 Mari Sebut Bersama!</h2>
 
 <p style="margin:15px 0;">
-Baca perkataan berikut dengan sebutan yang betul:
+Baca perkataan dengan sebutan yang jelas.
 </p>
 
-<div style="font-size:28px;font-weight:bold;line-height:2.2;">
-ibu<br>
-ayah<br>
-adik<br>
-abang
+<div style="
+background:#f8f5ff;
+padding:20px;
+border-radius:20px;
+margin:20px 0;
+">
+
+<div style="
+font-size:30px;
+font-weight:bold;
+line-height:2;
+">
+
+👩 ibu<br>
+👨 ayah<br>
+👧 adik<br>
+👦 abang
+
 </div>
 
-<p style="margin-top:20px;">
-⭐ Sebut perlahan-lahan dan jelas.
+</div>
+
+<div style="
+background:#fff7df;
+padding:18px;
+border-radius:18px;
+margin:20px 0;
+">
+
+💡 <b>Petua Ms. Ainaa:</b><br>
+Sebut perlahan-lahan dan dengar bunyi vokal dalam perkataan. 👂⭐
+
+</div>
+
+<hr style="margin:30px 0;border:0;border-top:1px solid #eee;">
+
+<h2>🎯 Cabaran Sebutlah Arif</h2>
+
+<p style="margin:15px 0;">
+Pilih perkataan yang mempunyai huruf vokal <b>A</b>.
 </p>
 
-<button class="activity-btn bm"
-style="margin-top:20px;"
-onclick="alert('👏 Syabas! Cuba sebut setiap perkataan dengan jelas.')">
+<div id="sebutlahQuiz"></div>
 
-🔊 Saya Dah Sebut!
-
-</button>
+</div>
 
 `
 },
@@ -1115,6 +1144,10 @@ function openTopic(topic){
 
     if(topic === "taman"){
     startTamanQuiz();
+    }
+
+    if(topic === "sebutlah"){
+    startSebutlahQuiz();
     }
 
 }
@@ -1889,7 +1922,248 @@ function showTamanResult(){
         </div>
     `;
 }
+const sebutlahQuestions = [
 
+    {
+        question:"Pilih perkataan yang mempunyai huruf vokal A.",
+        options:["ibu","adik","ayah","ini"],
+        answer:"ayah"
+    },
+
+    {
+        question:"Pilih perkataan yang mempunyai huruf vokal I.",
+        options:["bola","ibu","ayah","abang"],
+        answer:"ibu"
+    },
+
+    {
+        question:"Pilih perkataan yang mempunyai huruf vokal I.",
+        options:["adik","bola","rumah","abang"],
+        answer:"adik"
+    },
+
+    {
+        question:"Pilih perkataan yang mempunyai huruf vokal A.",
+        options:["ibu","ini","abang","itik"],
+        answer:"abang"
+    },
+
+    {
+        question:"Yang manakah perkataan yang mengandungi huruf vokal A?",
+        options:["ibu","ayah","itik","ubi"],
+        answer:"ayah"
+    }
+
+];
+
+let sebutlahIndex = 0;
+let sebutlahScore = 0;
+
+
+function startSebutlahQuiz(){
+
+    sebutlahIndex = 0;
+    sebutlahScore = 0;
+
+    showSebutlahQuestion();
+
+}
+
+
+function showSebutlahQuestion(){
+
+    const box =
+    document.getElementById("sebutlahQuiz");
+
+    if(!box) return;
+
+    const q =
+    sebutlahQuestions[sebutlahIndex];
+
+    box.innerHTML = `
+
+        <div style="
+        background:#f8f5ff;
+        padding:25px;
+        border-radius:20px;
+        margin-top:20px;
+        ">
+
+            <p style="font-weight:bold;">
+                Soalan ${sebutlahIndex + 1}
+                daripada ${sebutlahQuestions.length}
+            </p>
+
+            <h3 style="margin:20px 0;">
+                ${q.question}
+            </h3>
+
+            <div class="activity-buttons">
+
+                ${q.options.map(option => `
+
+                    <button
+                    class="activity-btn"
+                    onclick="checkSebutlahAnswer('${option}')">
+
+                    ${option}
+
+                    </button>
+
+                `).join("")}
+
+            </div>
+
+            <p
+            id="sebutlahFeedback"
+            style="
+            font-weight:bold;
+            margin-top:20px;
+            min-height:25px;
+            ">
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+function checkSebutlahAnswer(answer){
+
+    const q =
+    sebutlahQuestions[sebutlahIndex];
+
+    const feedback =
+    document.getElementById("sebutlahFeedback");
+
+    const buttons =
+    document.querySelectorAll(
+        "#sebutlahQuiz .activity-btn"
+    );
+
+    buttons.forEach(button => {
+
+        button.disabled = true;
+
+    });
+
+
+    if(answer === q.answer){
+
+        sebutlahScore++;
+
+        feedback.innerHTML =
+        "🎉 Syabas! Jawapan kamu betul! ⭐";
+
+        feedback.style.color="#3c8c55";
+
+    }else{
+
+        feedback.innerHTML =
+        "💪 Hampir betul! Cuba lagi.";
+
+        feedback.style.color="#c77755";
+
+    }
+
+
+    setTimeout(() => {
+
+        sebutlahIndex++;
+
+        if(
+            sebutlahIndex <
+            sebutlahQuestions.length
+        ){
+
+            showSebutlahQuestion();
+
+        }else{
+
+            showSebutlahResult();
+
+        }
+
+    },1000);
+
+}
+
+
+function showSebutlahResult(){
+
+    const box =
+    document.getElementById("sebutlahQuiz");
+
+    let stars = "";
+
+    if(sebutlahScore === 5){
+
+        stars = "⭐⭐⭐⭐⭐";
+
+    }else if(sebutlahScore >= 3){
+
+        stars = "⭐⭐⭐";
+
+    }else{
+
+        stars = "⭐";
+
+    }
+
+
+    box.innerHTML = `
+
+        <div style="
+        margin-top:25px;
+        padding:25px;
+        background:#fff7df;
+        border-radius:20px;
+        text-align:center;
+        ">
+
+            <h2>🏆 Tahniah!</h2>
+
+            <p style="
+            font-size:35px;
+            margin:15px 0;
+            ">
+                ${stars}
+            </p>
+
+            <h3>
+                Skor kamu:
+                ${sebutlahScore} / 5
+            </h3>
+
+            <p style="margin-top:15px;">
+
+                ${
+                    sebutlahScore === 5
+                    ? "Hebat! Sebutan dan jawapan kamu sangat baik! 🌟"
+                    : sebutlahScore >= 3
+                    ? "Bagus! Teruskan berlatih membaca dan menyebut. 💪"
+                    : "Tidak mengapa. Cuba lagi, Little Learner! ❤️"
+                }
+
+            </p>
+
+            <button
+            class="activity-btn bm"
+            style="margin-top:20px;"
+            onclick="startSebutlahQuiz()">
+
+                🔄 Cuba Lagi
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+    
 </script>
 
 </body>
