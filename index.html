@@ -3744,130 +3744,7 @@ function showBinaPerkataanResult(){
             </button>
 
         </div>
-    `;
-}
 
-    const kataNamaAmQuestions = [
-    {
-        question:"Yang manakah kata nama am?",
-        options:["ibu","Aina","Malaysia","Isnin"],
-        answer:"ibu"
-    },
-    {
-        question:"Pilih kata nama am bagi haiwan.",
-        options:["kucing","Hania","Ali","Kedah"],
-        answer:"kucing"
-    },
-    {
-        question:"Yang manakah kata nama am bagi benda?",
-        options:["buku","Aina","Malaysia","Ahad"],
-        answer:"buku"
-    },
-    {
-        question:"Pilih kata nama am bagi tempat.",
-        options:["sekolah","Hana","Kedah","Jumaat"],
-        answer:"sekolah"
-    },
-    {
-        question:"Yang manakah kata nama am?",
-        options:["guru","Ms. Ainaa","Malaysia","Imaan"],
-        answer:"guru"
-    },
-    {
-        question:"Pilih kata nama am.",
-        options:["rumah","Hania Zafira","Kedah","Isnin"],
-        answer:"rumah"
-    }
-];
-
-let kataNamaAmIndex = 0;
-let kataNamaAmScore = 0;
-
-function startKataNamaAmQuiz(){
-
-    kataNamaAmIndex = 0;
-    kataNamaAmScore = 0;
-
-    showKataNamaAmQuestion();
-}
-
-function showKataNamaAmQuestion(){
-
-    const box =
-        document.getElementById("kataNamaAmQuiz");
-
-    if(!box) return;
-
-    const q =
-        kataNamaAmQuestions[kataNamaAmIndex];
-
-    box.innerHTML = `
-
-        <div style="
-        background:#f8f5ff;
-        padding:25px;
-        border-radius:20px;
-        margin-top:20px;
-        text-align:center;
-        ">
-
-            <p style="font-weight:bold;">
-                Soalan ${kataNamaAmIndex + 1}
-                daripada ${kataNamaAmQuestions.length}
-            </p>
-
-            <h3 style="margin:20px 0;">
-                ${q.question}
-            </h3>
-
-            <div class="activity-buttons">
-
-                ${q.options.map(option => `
-
-                    <button
-                    class="activity-btn"
-                    onclick="checkKataNamaAmAnswer('${option}')">
-
-                        ${option}
-
-                    </button>
-
-                `).join("")}
-
-            </div>
-
-            <p
-            id="kataNamaAmFeedback"
-            style="
-            font-weight:bold;
-            margin-top:20px;
-            min-height:25px;
-            ">
-            </p>
-
-        </div>
-    `;
-}
-
-function checkKataNamaAmAnswer(answer){
-
-    const q =
-        kataNamaAmQuestions[kataNamaAmIndex];
-
-    const feedback =
-        document.getElementById(
-            "kataNamaAmFeedback"
-        );
-
-    document.querySelectorAll(
-        "#kataNamaAmQuiz .activity-btn"
-    ).forEach(button => {
-
-        button.disabled = true;
-
-    });
-
-    if(answer === q.answer){
 const kataNamaAmQuestions = [
     {
         question:"Yang manakah kata nama am?",
@@ -4076,13 +3953,9 @@ function showKataNamaAmResult(){
 
                 ${
                     kataNamaAmScore === 6
-
                     ? "Hebat! Kamu sudah pandai mengenal kata nama am! 🌟"
-
                     : kataNamaAmScore >= 4
-
                     ? "Bagus! Teruskan berlatih! 💪"
-
                     : "Tidak mengapa. Cuba lagi, Little Learner! ❤️"
                 }
 
@@ -4100,6 +3973,7 @@ function showKataNamaAmResult(){
         </div>
     `;
 }
+
         
 </script>
 
