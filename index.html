@@ -642,6 +642,62 @@ Pilih perkataan yang mengandungi bunyi <b>ai</b>.
 
 `
 },
+
+    vokalberganding:{
+title:"🔡 Vokal Berganding",
+subtitle:"Kenali dua vokal yang hadir bersebelahan",
+content:`
+
+<div class="lesson-box">
+
+<h2>🌟 Jom Kenal Vokal Berganding!</h2>
+
+<p style="margin:15px 0;">
+Vokal berganding ialah <b>dua huruf vokal yang hadir bersebelahan</b> dalam sesuatu perkataan.
+</p>
+
+<div style="
+background:#f8f5ff;
+padding:20px;
+border-radius:20px;
+margin:20px 0;
+line-height:2;
+font-size:20px;
+">
+
+<p>🍉 <b>buah</b> → ua</p>
+<p>🌿 <b>daun</b> → au</p>
+<p>🍲 <b>kuih</b> → ui</p>
+<p>👩 <b>puan</b> → ua</p>
+
+</div>
+
+<div style="
+background:#fff7df;
+padding:18px;
+border-radius:18px;
+margin:20px 0;
+">
+
+💡 <b>Petua Ms. Ainaa:</b><br>
+Cari <strong>dua huruf vokal</strong> yang berada bersebelahan dalam perkataan. ⭐
+
+</div>
+
+<hr style="margin:30px 0;border:0;border-top:1px solid #eee;">
+
+<h2>🎯 Cabaran Vokal Berganding</h2>
+
+<p style="margin:15px 0;">
+Pilih perkataan yang mengandungi <b>vokal berganding</b>.
+</p>
+
+<div id="vokalBergandingQuiz"></div>
+
+</div>
+
+`
+},
     
 pandainya:{
 title:"🔤 Pandainya Arif",
@@ -1294,6 +1350,10 @@ function openTopic(topic){
 
     if(topic === "diftong"){
     startDiftongQuiz();
+    }
+
+    if(topic === "vokalberganding"){
+    startVokalBergandingQuiz();
     }
 
 }
@@ -2787,6 +2847,243 @@ function showDiftongResult(){
             class="activity-btn bm"
             style="margin-top:20px;"
             onclick="startDiftongQuiz()">
+
+                🔄 Cuba Lagi
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+    const vokalBergandingQuestions = [
+
+    {
+        question:"Yang manakah mempunyai vokal berganding?",
+        options:["buah","batu","meja","buku"],
+        answer:"buah"
+    },
+
+    {
+        question:"Pilih perkataan yang mempunyai dua vokal bersebelahan.",
+        options:["daun","rumah","bola","sapu"],
+        answer:"daun"
+    },
+
+    {
+        question:"Yang manakah mempunyai vokal berganding ui?",
+        options:["kuih","kerbau","pantai","abang"],
+        answer:"kuih"
+    },
+
+    {
+        question:"Pilih perkataan yang mempunyai vokal berganding ua.",
+        options:["puan","ibu","adik","baju"],
+        answer:"puan"
+    },
+
+    {
+        question:"Yang manakah mempunyai vokal berganding?",
+        options:["buah","buku","meja","rumah"],
+        answer:"buah"
+    }
+
+];
+
+let vokalBergandingIndex = 0;
+let vokalBergandingScore = 0;
+
+
+function startVokalBergandingQuiz(){
+
+    vokalBergandingIndex = 0;
+    vokalBergandingScore = 0;
+
+    showVokalBergandingQuestion();
+
+}
+
+
+function showVokalBergandingQuestion(){
+
+    const box =
+    document.getElementById("vokalBergandingQuiz");
+
+    if(!box) return;
+
+    const q =
+    vokalBergandingQuestions[vokalBergandingIndex];
+
+    box.innerHTML = `
+
+        <div style="
+        background:#f8f5ff;
+        padding:25px;
+        border-radius:20px;
+        margin-top:20px;
+        ">
+
+            <p style="font-weight:bold;">
+                Soalan ${vokalBergandingIndex + 1}
+                daripada ${vokalBergandingQuestions.length}
+            </p>
+
+            <h3 style="margin:20px 0;">
+                ${q.question}
+            </h3>
+
+            <div class="activity-buttons">
+
+                ${q.options.map(option => `
+
+                    <button
+                    class="activity-btn"
+                    onclick="checkVokalBergandingAnswer('${option}')">
+
+                        ${option}
+
+                    </button>
+
+                `).join("")}
+
+            </div>
+
+            <p
+            id="vokalBergandingFeedback"
+            style="
+            font-weight:bold;
+            margin-top:20px;
+            min-height:25px;
+            ">
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+function checkVokalBergandingAnswer(answer){
+
+    const q =
+    vokalBergandingQuestions[vokalBergandingIndex];
+
+    const feedback =
+    document.getElementById("vokalBergandingFeedback");
+
+    document.querySelectorAll(
+        "#vokalBergandingQuiz .activity-btn"
+    ).forEach(button => {
+
+        button.disabled = true;
+
+    });
+
+
+    if(answer === q.answer){
+
+        vokalBergandingScore++;
+
+        feedback.innerHTML =
+        "🎉 Syabas! Jawapan kamu betul! ⭐";
+
+        feedback.style.color="#3c8c55";
+
+    }else{
+
+        feedback.innerHTML =
+        "💪 Hampir betul! Jawapan yang betul ialah "
+        + q.answer + ".";
+
+        feedback.style.color="#c77755";
+
+    }
+
+
+    setTimeout(() => {
+
+        vokalBergandingIndex++;
+
+        if(
+            vokalBergandingIndex <
+            vokalBergandingQuestions.length
+        ){
+
+            showVokalBergandingQuestion();
+
+        }else{
+
+            showVokalBergandingResult();
+
+        }
+
+    },1000);
+
+}
+
+
+function showVokalBergandingResult(){
+
+    const box =
+    document.getElementById("vokalBergandingQuiz");
+
+    let stars = "";
+
+    if(vokalBergandingScore === 5){
+
+        stars = "⭐⭐⭐⭐⭐";
+
+    }else if(vokalBergandingScore >= 3){
+
+        stars = "⭐⭐⭐";
+
+    }else{
+
+        stars = "⭐";
+
+    }
+
+
+    box.innerHTML = `
+
+        <div style="
+        margin-top:25px;
+        padding:25px;
+        background:#fff7df;
+        border-radius:20px;
+        text-align:center;
+        ">
+
+            <h2>🏆 Tahniah!</h2>
+
+            <p style="font-size:35px;margin:15px 0;">
+                ${stars}
+            </p>
+
+            <h3>
+                Skor kamu:
+                ${vokalBergandingScore} / 5
+            </h3>
+
+            <p style="margin-top:15px;">
+
+                ${
+                    vokalBergandingScore === 5
+                    ? "Hebat! Kamu sudah pandai mengenal vokal berganding! 🌟"
+                    : vokalBergandingScore >= 3
+                    ? "Bagus! Teruskan berlatih! 💪"
+                    : "Tidak mengapa. Cuba lagi, Little Learner! ❤️"
+                }
+
+            </p>
+
+            <button
+            class="activity-btn bm"
+            style="margin-top:20px;"
+            onclick="startVokalBergandingQuiz()">
 
                 🔄 Cuba Lagi
 
