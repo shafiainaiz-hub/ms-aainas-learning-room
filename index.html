@@ -911,6 +911,32 @@ const topics = {
 
     `
 },
+    cabaranunit3: {
+    title: "🏆 Cabaran Unit 3",
+    subtitle: "Uji semua yang telah kamu pelajari",
+    content: `
+    
+    <h2>🏆 Cabaran Unit 3</h2>
+
+    <p>
+    Tahniah kerana sudah belajar semua topik dalam Unit 3!
+    Sekarang, mari uji pengetahuan kamu. 💪😊
+    </p>
+
+    <div class="activity-card">
+
+        <h3>🌟 Kamu Bersedia?</h3>
+
+        <p>
+        Jawab semua 10 soalan dengan teliti.
+        </p>
+
+        <div id="cabaranunit3Quiz"></div>
+
+    </div>
+
+    `
+},
     
     diftong:{
 title:"🔤 Diftong",
@@ -1893,6 +1919,10 @@ function openTopic(topic){
 
     if(topic === "binaayat"){
     startBinaAyatQuiz();
+    }
+
+    if(topic === "cabaranunit3"){
+    startCabaranUnit3Quiz();
     }
     
     if(topic === "pandainya"){
@@ -4983,6 +5013,159 @@ function showCabaranUnit2Result(){
 
         current++;
         showQuestion();
+    };
+
+    showQuestion();
+    }
+
+    function startCabaranUnit3Quiz(){
+
+    const questions = [
+
+        {
+            q: "Apakah tempat untuk menanam padi?",
+            options: ["Sawah", "Dapur", "Bilik"],
+            answer: 0
+        },
+
+        {
+            q: "ba + ju = ?",
+            options: ["baju", "batu", "baca"],
+            answer: 0
+        },
+
+        {
+            q: "Manakah kata kerja?",
+            options: ["berlari", "rumah", "buku"],
+            answer: 0
+        },
+
+        {
+            q: "Ali sedang ______ buku.",
+            options: ["membaca", "meja", "sekolah"],
+            answer: 0
+        },
+
+        {
+            q: "Siapakah yang membawa Aina ke sawah?",
+            options: ["Datuk", "Adik", "Kawan"],
+            answer: 0
+        },
+
+        {
+            q: "Apakah perasaan Aina ketika berada di kampung?",
+            options: ["Gembira", "Marah", "Takut"],
+            answer: 0
+        },
+
+        {
+            q: "Susun perkataan: <br><br><b>makan / Ayam / jagung</b>",
+            options: [
+                "Ayam makan jagung.",
+                "Jagung ayam makan.",
+                "Makan ayam jagung."
+            ],
+            answer: 0
+        },
+
+        {
+            q: "bu + ku = ?",
+            options: ["buku", "bulu", "buka"],
+            answer: 0
+        },
+
+        {
+            q: "Ayah ______ ke sawah.",
+            options: ["pergi", "buku", "rumah"],
+            answer: 0
+        },
+
+        {
+            q: "Apakah yang dilihat Aina di sawah?",
+            options: ["Pokok padi", "Kereta", "Televisyen"],
+            answer: 0
+        }
+
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion(){
+
+        const box = document.getElementById("cabaranunit3Quiz");
+
+        if(current >= questions.length){
+
+            let message = "";
+
+            if(score === 10){
+                message = "🌟 SEMPURNA! Hebat sangat!";
+            }
+            else if(score >= 8){
+                message = "🎉 Tahniah! Kamu sangat hebat!";
+            }
+            else if(score >= 5){
+                message = "👏 Bagus! Teruskan berlatih!";
+            }
+            else{
+                message = "💪 Jangan putus asa! Cuba lagi!";
+            }
+
+            box.innerHTML = `
+                <h2>🏆 Cabaran Tamat!</h2>
+
+                <p>Markah kamu:</p>
+
+                <h1>${score} / ${questions.length}</h1>
+
+                <h2>${message}</h2>
+
+                <button
+                    class="activity-btn"
+                    onclick="startCabaranUnit3Quiz()">
+                    🔄 Cuba Lagi
+                </button>
+            `;
+
+            return;
+        }
+
+        const item = questions[current];
+
+        box.innerHTML = `
+            <h3>🏆 Soalan ${current + 1} daripada ${questions.length}</h3>
+
+            <p><b>${item.q}</b></p>
+
+            ${item.options.map((option, index) => `
+                <button
+                    class="activity-btn"
+                    onclick="answerCabaranUnit3(${index})">
+                    ${option}
+                </button>
+            `).join("")}
+        `;
+    }
+
+    window.answerCabaranUnit3 = function(index){
+
+        if(index === questions[current].answer){
+
+            score++;
+
+            alert("✅ Betul! Hebat!");
+
+        }else{
+
+            alert("❌ Belum tepat. Teruskan mencuba! 😊");
+
+        }
+
+        current++;
+
+        showQuestion();
+
     };
 
     showQuestion();
