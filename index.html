@@ -761,6 +761,67 @@ Pilih kategori yang betul bagi setiap perkataan.
 
 `
 },
+
+    binaperkataan:{
+title:"🧩 Jom Bina Perkataan",
+subtitle:"Gabungkan suku kata menjadi perkataan",
+content:`
+
+<div class="lesson-box">
+
+<h2>🌟 Jom Bina Perkataan!</h2>
+
+<p style="margin:15px 0;">
+Mari gabungkan suku kata untuk membina perkataan yang betul. 🧩
+</p>
+
+<div style="
+background:#f8f5ff;
+padding:20px;
+border-radius:20px;
+margin:20px 0;
+line-height:2;
+">
+
+<p>💡 Contoh:</p>
+
+<p style="font-size:24px;">
+<strong>ke + lu + ar + ga</strong>
+</p>
+
+<p>
+➡️ <strong>keluarga</strong>
+</p>
+
+</div>
+
+<div style="
+background:#fff7df;
+padding:18px;
+border-radius:18px;
+margin:20px 0;
+">
+
+💡 <b>Petua Ms. Ainaa:</b><br>
+Baca setiap suku kata perlahan-lahan.
+Kemudian gabungkan semuanya menjadi satu perkataan. ⭐
+
+</div>
+
+<hr style="margin:30px 0;border:0;border-top:1px solid #eee;">
+
+<h2>🎮 Cabaran Suku Kata</h2>
+
+<p style="margin:15px 0;">
+Pilih perkataan yang betul berdasarkan suku kata yang diberi.
+</p>
+
+<div id="binaPerkataanQuiz"></div>
+
+</div>
+
+`
+},
     
 pandainya:{
 title:"🔤 Pandainya Arif",
@@ -1421,6 +1482,10 @@ function openTopic(topic){
 
     if(topic === "diftongvokal"){
     startDiftongVokalQuiz();
+    }
+
+    if(topic === "binaperkataan"){
+    startBinaPerkataanQuiz();
     }
 
 }
@@ -3387,6 +3452,230 @@ function showDiftongVokalResult(){
             class="activity-btn bm"
             style="margin-top:20px;"
             onclick="startDiftongVokalQuiz()">
+
+                🔄 Cuba Lagi
+
+            </button>
+
+        </div>
+    `;
+}
+
+    const binaPerkataanQuestions = [
+    {
+        question:"ke + lu + ar + ga",
+        options:["keluarga","kereta","kelapa","kemala"],
+        answer:"keluarga"
+    },
+    {
+        question:"ne + nek",
+        options:["nenek","nanas","nelayan","negara"],
+        answer:"nenek"
+    },
+    {
+        question:"gam + bar",
+        options:["gambar","gembira","gambus","gamat"],
+        answer:"gambar"
+    },
+    {
+        question:"gu + li",
+        options:["guli","gula","gunung","guru"],
+        answer:"guli"
+    },
+    {
+        question:"ti + bar",
+        options:["tikar","tibar","tikus","timah"],
+        answer:"tibar"
+    },
+    {
+        question:"le + nek",
+        options:["leher","lembu","lenek","leka"],
+        answer:"lenek"
+    }
+];
+
+let binaPerkataanIndex = 0;
+let binaPerkataanScore = 0;
+
+function startBinaPerkataanQuiz(){
+    binaPerkataanIndex = 0;
+    binaPerkataanScore = 0;
+    showBinaPerkataanQuestion();
+}
+
+function showBinaPerkataanQuestion(){
+
+    const box = document.getElementById("binaPerkataanQuiz");
+
+    if(!box) return;
+
+    const q = binaPerkataanQuestions[binaPerkataanIndex];
+
+    box.innerHTML = `
+        <div style="
+        background:#f8f5ff;
+        padding:25px;
+        border-radius:20px;
+        margin-top:20px;
+        text-align:center;
+        ">
+
+            <p style="font-weight:bold;">
+                Soalan ${binaPerkataanIndex + 1}
+                daripada ${binaPerkataanQuestions.length}
+            </p>
+
+            <h2 style="
+            margin:25px 0;
+            font-size:30px;
+            ">
+                ${q.question}
+            </h2>
+
+            <p style="margin-bottom:20px;">
+                Apakah perkataan yang betul?
+            </p>
+
+            <div class="activity-buttons">
+
+                ${q.options.map(option => `
+                    <button
+                    class="activity-btn"
+                    onclick="checkBinaPerkataanAnswer('${option}')">
+                        ${option}
+                    </button>
+                `).join("")}
+
+            </div>
+
+            <p
+            id="binaPerkataanFeedback"
+            style="
+            font-weight:bold;
+            margin-top:20px;
+            min-height:25px;
+            ">
+            </p>
+
+        </div>
+    `;
+}
+
+function checkBinaPerkataanAnswer(answer){
+
+    const q = binaPerkataanQuestions[binaPerkataanIndex];
+
+    const feedback =
+        document.getElementById("binaPerkataanFeedback");
+
+    document.querySelectorAll(
+        "#binaPerkataanQuiz .activity-btn"
+    ).forEach(button => {
+        button.disabled = true;
+    });
+
+    if(answer === q.answer){
+
+        binaPerkataanScore++;
+
+        feedback.innerHTML =
+        "🎉 Syabas! Jawapan kamu betul! ⭐";
+
+        feedback.style.color="#3c8c55";
+
+    }else{
+
+        feedback.innerHTML =
+        "💪 Cuba lagi! Jawapan yang betul ialah " +
+        q.answer + ".";
+
+        feedback.style.color="#c77755";
+    }
+
+    setTimeout(() => {
+
+        binaPerkataanIndex++;
+
+        if(
+            binaPerkataanIndex <
+            binaPerkataanQuestions.length
+        ){
+
+            showBinaPerkataanQuestion();
+
+        }else{
+
+            showBinaPerkataanResult();
+
+        }
+
+    },1000);
+}
+
+function showBinaPerkataanResult(){
+
+    const box =
+        document.getElementById("binaPerkataanQuiz");
+
+    let stars = "";
+
+    if(binaPerkataanScore === 6){
+
+        stars = "⭐⭐⭐⭐⭐";
+
+    }else if(binaPerkataanScore >= 4){
+
+        stars = "⭐⭐⭐";
+
+    }else{
+
+        stars = "⭐";
+    }
+
+    box.innerHTML = `
+
+        <div style="
+        margin-top:25px;
+        padding:25px;
+        background:#fff7df;
+        border-radius:20px;
+        text-align:center;
+        ">
+
+            <h2>🏆 Tahniah!</h2>
+
+            <p style="
+            font-size:35px;
+            margin:15px 0;
+            ">
+                ${stars}
+            </p>
+
+            <h3>
+                Skor kamu:
+                ${binaPerkataanScore} / 6
+            </h3>
+
+            <p style="margin-top:15px;">
+
+                ${
+                    binaPerkataanScore === 6
+
+                    ? "Hebat! Kamu sudah pandai membina perkataan! 🌟"
+
+                    : binaPerkataanScore >= 4
+
+                    ? "Bagus! Teruskan berlatih! 💪"
+
+                    : "Tidak mengapa. Cuba lagi, Little Learner! ❤️"
+                }
+
+            </p>
+
+            <button
+            class="activity-btn bm"
+            style="margin-top:20px;"
+            onclick="startBinaPerkataanQuiz()">
 
                 🔄 Cuba Lagi
 
