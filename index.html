@@ -716,6 +716,55 @@ const topics = {
     `
 },
     
+    sukukata: {
+    title: "🔤 Jom Baca Suku Kata",
+    subtitle: "Membaca dan membina perkataan mudah",
+    content: `
+    
+    <h2>📖 Mari Baca Suku Kata!</h2>
+
+    <p>
+    Suku kata membantu kita membaca perkataan dengan lebih mudah.
+    Jom gabungkan suku kata! 😊
+    </p>
+
+    <div class="activity-card">
+
+        <h3>🔤 Baca Suku Kata</h3>
+
+        <p><b>ba</b> + <b>ju</b> = <b>baju</b></p>
+        <p><b>bu</b> + <b>ku</b> = <b>buku</b></p>
+        <p><b>bo</b> + <b>la</b> = <b>bola</b></p>
+        <p><b>sa</b> + <b>pi</b> = <b>sapi</b></p>
+        <p><b>ka</b> + <b>ki</b> = <b>kaki</b></p>
+
+    </div>
+
+    <div class="activity-card">
+
+        <h3>💡 Ingat!</h3>
+
+        <p>
+        Baca satu suku kata pada satu masa.
+        Kemudian, gabungkan kedua-duanya menjadi satu perkataan.
+        </p>
+
+        <p>Contoh:</p>
+        <h2>ba ➡️ ju ➡️ BAJU 👕</h2>
+
+    </div>
+
+    <div class="activity-card">
+
+        <h3>🎯 Jom Cuba!</h3>
+
+        <div id="sukukataQuiz"></div>
+
+    </div>
+
+    `
+},
+    
     diftong:{
 title:"🔤 Diftong",
 subtitle:"Kenali bunyi ai, au dan oi",
@@ -1681,6 +1730,10 @@ function openTopic(topic){
 
     if(topic === "seronokdikampung"){
     startSeronokDiKampungQuiz();
+    }
+
+    if(topic === "sukukata"){
+    startSukuKataQuiz();
     }
     
     if(topic === "pandainya"){
@@ -4397,6 +4450,94 @@ function showCabaranUnit2Result(){
 
     showQuestion();
 }
+
+    function startSukuKataQuiz(){
+
+    const questions = [
+        {
+            q: "ba + ju = ?",
+            options: ["baju", "batu", "baca"],
+            answer: 0
+        },
+        {
+            q: "bu + ku = ?",
+            options: ["buku", "bulu", "buka"],
+            answer: 0
+        },
+        {
+            q: "bo + la = ?",
+            options: ["bola", "bulu", "beli"],
+            answer: 0
+        },
+        {
+            q: "ka + ki = ?",
+            options: ["kaki", "kuku", "kaku"],
+            answer: 0
+        },
+        {
+            q: "sa + pi = ?",
+            options: ["sapi", "sapu", "satu"],
+            answer: 0
+        }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion(){
+
+        const box = document.getElementById("sukukataQuiz");
+
+        if(current >= questions.length){
+
+            box.innerHTML = `
+                <h2>🎉 Tahniah!</h2>
+                <p>Markah kamu:</p>
+                <h1>${score} / ${questions.length}</h1>
+                <p>🌟 Bagus! Kamu semakin pandai membaca!</p>
+
+                <button
+                    class="activity-btn"
+                    onclick="startSukuKataQuiz()">
+                    🔄 Cuba Lagi
+                </button>
+            `;
+
+            return;
+        }
+
+        const item = questions[current];
+
+        box.innerHTML = `
+            <h3>Soalan ${current + 1} daripada ${questions.length}</h3>
+
+            <p><b>${item.q}</b></p>
+
+            ${item.options.map((option, index) => `
+                <button
+                    class="activity-btn"
+                    onclick="answerSukuKata(${index})">
+                    ${option}
+                </button>
+            `).join("")}
+        `;
+    }
+
+    window.answerSukuKata = function(index){
+
+        if(index === questions[current].answer){
+            score++;
+            alert("✅ Betul! Bagus!");
+        }else{
+            alert("❌ Belum tepat. Cuba lagi! 😊");
+        }
+
+        current++;
+        showQuestion();
+    };
+
+    showQuestion();
+    }
     
 </script>
 
