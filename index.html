@@ -764,6 +764,53 @@ const topics = {
 
     `
 },
+
+    katakerja: {
+    title: "🏃 Kata Kerja",
+    subtitle: "Kenali perkataan yang menunjukkan perbuatan",
+    content: `
+    
+    <h2>🏃 Jom Kenali Kata Kerja!</h2>
+
+    <p>
+    <b>Kata kerja</b> ialah perkataan yang menunjukkan sesuatu
+    <b>perbuatan</b> atau aktiviti.
+    </p>
+
+    <div class="activity-card">
+
+        <h3>📚 Contoh Kata Kerja</h3>
+
+        <p>🏃 <b>lari</b></p>
+        <p>🍚 <b>makan</b></p>
+        <p>🥤 <b>minum</b></p>
+        <p>📖 <b>baca</b></p>
+        <p>✏️ <b>tulis</b></p>
+        <p>🛌 <b>tidur</b></p>
+
+    </div>
+
+    <div class="activity-card">
+
+        <h3>💡 Contoh Ayat</h3>
+
+        <p>1. Ali <b>lari</b> di padang.</p>
+        <p>2. Ibu <b>memasak</b> di dapur.</p>
+        <p>3. Siti <b>membaca</b> buku.</p>
+        <p>4. Adik <b>tidur</b> di bilik.</p>
+
+    </div>
+
+    <div class="activity-card">
+
+        <h3>🎯 Jom Uji Diri!</h3>
+
+        <div id="katakerjaQuiz"></div>
+
+    </div>
+
+    `
+},
     
     diftong:{
 title:"🔤 Diftong",
@@ -1734,6 +1781,10 @@ function openTopic(topic){
 
     if(topic === "sukukata"){
     startSukuKataQuiz();
+    }
+
+    if(topic === "katakerja"){
+    startKataKerjaQuiz();
     }
     
     if(topic === "pandainya"){
@@ -4530,6 +4581,94 @@ function showCabaranUnit2Result(){
             alert("✅ Betul! Bagus!");
         }else{
             alert("❌ Belum tepat. Cuba lagi! 😊");
+        }
+
+        current++;
+        showQuestion();
+    };
+
+    showQuestion();
+    }
+
+    function startKataKerjaQuiz(){
+
+    const questions = [
+        {
+            q: "Manakah kata kerja?",
+            options: ["lari", "rumah", "buku"],
+            answer: 0
+        },
+        {
+            q: "Ali sedang ______ buku.",
+            options: ["membaca", "meja", "sekolah"],
+            answer: 0
+        },
+        {
+            q: "Ibu sedang ______ nasi.",
+            options: ["memasak", "rumah", "pinggan"],
+            answer: 0
+        },
+        {
+            q: "Adik sedang ______.",
+            options: ["tidur", "bantal", "bilik"],
+            answer: 0
+        },
+        {
+            q: "Manakah perkataan yang menunjukkan perbuatan?",
+            options: ["minum", "air", "gelas"],
+            answer: 0
+        }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion(){
+
+        const box = document.getElementById("katakerjaQuiz");
+
+        if(current >= questions.length){
+
+            box.innerHTML = `
+                <h2>🎉 Tahniah!</h2>
+                <p>Markah kamu:</p>
+                <h1>${score} / ${questions.length}</h1>
+                <p>🏃 Hebat! Kamu sudah kenal kata kerja!</p>
+
+                <button
+                    class="activity-btn"
+                    onclick="startKataKerjaQuiz()">
+                    🔄 Cuba Lagi
+                </button>
+            `;
+
+            return;
+        }
+
+        const item = questions[current];
+
+        box.innerHTML = `
+            <h3>Soalan ${current + 1} daripada ${questions.length}</h3>
+
+            <p><b>${item.q}</b></p>
+
+            ${item.options.map((option, index) => `
+                <button
+                    class="activity-btn"
+                    onclick="answerKataKerja(${index})">
+                    ${option}
+                </button>
+            `).join("")}
+        `;
+    }
+
+    window.answerKataKerja = function(index){
+
+        if(index === questions[current].answer){
+            score++;
+            alert("✅ Betul! Bagus!");
+        }else{
+            alert("❌ Cuba lagi! 😊");
         }
 
         current++;
