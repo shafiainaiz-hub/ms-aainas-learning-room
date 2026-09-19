@@ -1419,6 +1419,10 @@ function openTopic(topic){
     startVokalBergandingQuiz();
     }
 
+    if(topic === "diftongvokal"){
+    startDiftongVokalQuiz();
+    }
+
 }
 
 function startPandainyaQuiz(){
@@ -3156,6 +3160,240 @@ function showVokalBergandingResult(){
 
     `;
 
+}
+
+    const diftongVokalQuestions = [
+    {
+        question:"Pantai",
+        options:["Diftong","Vokal Berganding"],
+        answer:"Diftong"
+    },
+    {
+        question:"Buah",
+        options:["Diftong","Vokal Berganding"],
+        answer:"Vokal Berganding"
+    },
+    {
+        question:"Kerbau",
+        options:["Diftong","Vokal Berganding"],
+        answer:"Diftong"
+    },
+    {
+        question:"Kedai",
+        options:["Diftong","Vokal Berganding"],
+        answer:"Diftong"
+    },
+    {
+        question:"Kuali",
+        options:["Diftong","Vokal Berganding"],
+        answer:"Vokal Berganding"
+    },
+    {
+        question:"Amboi",
+        options:["Diftong","Vokal Berganding"],
+        answer:"Diftong"
+    },
+    {
+        question:"Puan",
+        options:["Diftong","Vokal Berganding"],
+        answer:"Vokal Berganding"
+    },
+    {
+        question:"Pandai",
+        options:["Diftong","Vokal Berganding"],
+        answer:"Diftong"
+    }
+];
+
+let diftongVokalIndex = 0;
+let diftongVokalScore = 0;
+
+function startDiftongVokalQuiz(){
+    diftongVokalIndex = 0;
+    diftongVokalScore = 0;
+    showDiftongVokalQuestion();
+}
+
+function showDiftongVokalQuestion(){
+
+    const box = document.getElementById("diftongVokalQuiz");
+
+    if(!box) return;
+
+    const q = diftongVokalQuestions[diftongVokalIndex];
+
+    box.innerHTML = `
+        <div style="
+        background:#f8f5ff;
+        padding:25px;
+        border-radius:20px;
+        margin-top:20px;
+        text-align:center;
+        ">
+
+            <p style="font-weight:bold;">
+                Soalan ${diftongVokalIndex + 1}
+                daripada ${diftongVokalQuestions.length}
+            </p>
+
+            <h2 style="
+            margin:25px 0;
+            font-size:32px;
+            ">
+                ${q.question}
+            </h2>
+
+            <p style="margin-bottom:20px;">
+                Perkataan ini ialah...
+            </p>
+
+            <div class="activity-buttons">
+
+                ${q.options.map(option => `
+                    <button
+                    class="activity-btn"
+                    onclick="checkDiftongVokalAnswer('${option}')">
+                        ${option}
+                    </button>
+                `).join("")}
+
+            </div>
+
+            <p
+            id="diftongVokalFeedback"
+            style="
+            font-weight:bold;
+            margin-top:20px;
+            min-height:25px;
+            ">
+            </p>
+
+        </div>
+    `;
+}
+
+function checkDiftongVokalAnswer(answer){
+
+    const q = diftongVokalQuestions[diftongVokalIndex];
+
+    const feedback =
+        document.getElementById("diftongVokalFeedback");
+
+    document.querySelectorAll(
+        "#diftongVokalQuiz .activity-btn"
+    ).forEach(button => {
+        button.disabled = true;
+    });
+
+    if(answer === q.answer){
+
+        diftongVokalScore++;
+
+        feedback.innerHTML =
+        "🎉 Syabas! Jawapan kamu betul! ⭐";
+
+        feedback.style.color="#3c8c55";
+
+    }else{
+
+        feedback.innerHTML =
+        "💪 Cuba lagi! Jawapan yang betul ialah " +
+        q.answer + ".";
+
+        feedback.style.color="#c77755";
+    }
+
+    setTimeout(() => {
+
+        diftongVokalIndex++;
+
+        if(
+            diftongVokalIndex <
+            diftongVokalQuestions.length
+        ){
+
+            showDiftongVokalQuestion();
+
+        }else{
+
+            showDiftongVokalResult();
+
+        }
+
+    },1000);
+}
+
+function showDiftongVokalResult(){
+
+    const box =
+        document.getElementById("diftongVokalQuiz");
+
+    let stars = "";
+
+    if(diftongVokalScore === 8){
+
+        stars = "⭐⭐⭐⭐⭐";
+
+    }else if(diftongVokalScore >= 5){
+
+        stars = "⭐⭐⭐";
+
+    }else{
+
+        stars = "⭐";
+    }
+
+    box.innerHTML = `
+
+        <div style="
+        margin-top:25px;
+        padding:25px;
+        background:#fff7df;
+        border-radius:20px;
+        text-align:center;
+        ">
+
+            <h2>🏆 Tahniah!</h2>
+
+            <p style="
+            font-size:35px;
+            margin:15px 0;
+            ">
+                ${stars}
+            </p>
+
+            <h3>
+                Skor kamu:
+                ${diftongVokalScore} / 8
+            </h3>
+
+            <p style="margin-top:15px;">
+
+                ${
+                    diftongVokalScore === 8
+
+                    ? "Hebat! Kamu sudah pandai membezakan diftong dan vokal berganding! 🌟"
+
+                    : diftongVokalScore >= 5
+
+                    ? "Bagus! Teruskan berlatih! 💪"
+
+                    : "Tidak mengapa. Cuba lagi, Little Learner! ❤️"
+                }
+
+            </p>
+
+            <button
+            class="activity-btn bm"
+            style="margin-top:20px;"
+            onclick="startDiftongVokalQuiz()">
+
+                🔄 Cuba Lagi
+
+            </button>
+
+        </div>
+    `;
 }
     
 </script>
