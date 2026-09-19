@@ -587,6 +587,62 @@ function showPage(pageId){
 
 const topics = {
 
+    diftong:{
+title:"🔤 Diftong",
+subtitle:"Kenali bunyi ai, au dan oi",
+content:`
+
+<div class="lesson-box">
+
+<h2>🌟 Jom Kenal Diftong!</h2>
+
+<p style="margin:15px 0;">
+Diftong ialah gabungan <b>dua huruf vokal</b> yang disebut sebagai satu bunyi dalam satu suku kata.
+</p>
+
+<div style="
+background:#f8f5ff;
+padding:20px;
+border-radius:20px;
+margin:20px 0;
+line-height:2;
+font-size:20px;
+">
+
+<p>🔵 <b>ai</b> → pantai, pandai</p>
+<p>🟢 <b>au</b> → bangau, kerbau</p>
+<p>🟡 <b>oi</b> → amboi</p>
+
+</div>
+
+<div style="
+background:#fff7df;
+padding:18px;
+border-radius:18px;
+margin:20px 0;
+">
+
+💡 <b>Petua Ms. Ainaa:</b><br>
+Ingat tiga bunyi diftong:
+<strong>ai • au • oi</strong> ⭐
+
+</div>
+
+<hr style="margin:30px 0;border:0;border-top:1px solid #eee;">
+
+<h2>🎯 Cabaran Diftong</h2>
+
+<p style="margin:15px 0;">
+Pilih perkataan yang mengandungi bunyi <b>ai</b>.
+</p>
+
+<div id="diftongQuiz"></div>
+
+</div>
+
+`
+},
+    
 pandainya:{
 title:"🔤 Pandainya Arif",
 subtitle:"Kenali huruf vokal dan konsonan",
@@ -1234,6 +1290,10 @@ function openTopic(topic){
 
     if(topic === "ajari"){
     startAjariQuiz();
+    }
+
+    if(topic === "diftong"){
+    startDiftongQuiz();
     }
 
 }
@@ -2496,6 +2556,247 @@ function showAjariResult(){
     `;
 
 } 
+
+    const diftongQuestions = [
+
+    {
+        question:"Yang manakah perkataan yang mengandungi bunyi ai?",
+        options:["pantai","bangau","amboi","buku"],
+        answer:"pantai"
+    },
+
+    {
+        question:"Yang manakah perkataan yang mengandungi bunyi au?",
+        options:["pandai","bangau","amboi","ibu"],
+        answer:"bangau"
+    },
+
+    {
+        question:"Yang manakah perkataan yang mengandungi bunyi oi?",
+        options:["pantai","kerbau","amboi","adik"],
+        answer:"amboi"
+    },
+
+    {
+        question:"Pilih perkataan yang mempunyai diftong ai.",
+        options:["sungai","bangau","amboi","rumah"],
+        answer:"sungai"
+    },
+
+    {
+        question:"Pilih perkataan yang mempunyai diftong au.",
+        options:["pandai","kerbau","amboi","buku"],
+        answer:"kerbau"
+    }
+
+];
+
+let diftongIndex = 0;
+let diftongScore = 0;
+
+
+function startDiftongQuiz(){
+
+    diftongIndex = 0;
+    diftongScore = 0;
+
+    showDiftongQuestion();
+
+}
+
+
+function showDiftongQuestion(){
+
+    const box =
+    document.getElementById("diftongQuiz");
+
+    if(!box) return;
+
+    const q =
+    diftongQuestions[diftongIndex];
+
+    box.innerHTML = `
+
+        <div style="
+        background:#f8f5ff;
+        padding:25px;
+        border-radius:20px;
+        margin-top:20px;
+        ">
+
+            <p style="font-weight:bold;">
+                Soalan ${diftongIndex + 1}
+                daripada ${diftongQuestions.length}
+            </p>
+
+            <h3 style="margin:20px 0;">
+                ${q.question}
+            </h3>
+
+            <div class="activity-buttons">
+
+                ${q.options.map(option => `
+
+                    <button
+                    class="activity-btn"
+                    onclick="checkDiftongAnswer('${option}')">
+
+                        ${option}
+
+                    </button>
+
+                `).join("")}
+
+            </div>
+
+            <p
+            id="diftongFeedback"
+            style="
+            font-weight:bold;
+            margin-top:20px;
+            min-height:25px;
+            ">
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+function checkDiftongAnswer(answer){
+
+    const q =
+    diftongQuestions[diftongIndex];
+
+    const feedback =
+    document.getElementById("diftongFeedback");
+
+    const buttons =
+    document.querySelectorAll(
+        "#diftongQuiz .activity-btn"
+    );
+
+    buttons.forEach(button => {
+        button.disabled = true;
+    });
+
+
+    if(answer === q.answer){
+
+        diftongScore++;
+
+        feedback.innerHTML =
+        "🎉 Syabas! Jawapan kamu betul! ⭐";
+
+        feedback.style.color="#3c8c55";
+
+    }else{
+
+        feedback.innerHTML =
+        "💪 Hampir betul! Jawapan yang betul ialah "
+        + q.answer + ".";
+
+        feedback.style.color="#c77755";
+
+    }
+
+
+    setTimeout(() => {
+
+        diftongIndex++;
+
+        if(
+            diftongIndex <
+            diftongQuestions.length
+        ){
+
+            showDiftongQuestion();
+
+        }else{
+
+            showDiftongResult();
+
+        }
+
+    },1000);
+
+}
+
+
+function showDiftongResult(){
+
+    const box =
+    document.getElementById("diftongQuiz");
+
+    let stars = "";
+
+    if(diftongScore === 5){
+
+        stars = "⭐⭐⭐⭐⭐";
+
+    }else if(diftongScore >= 3){
+
+        stars = "⭐⭐⭐";
+
+    }else{
+
+        stars = "⭐";
+
+    }
+
+
+    box.innerHTML = `
+
+        <div style="
+        margin-top:25px;
+        padding:25px;
+        background:#fff7df;
+        border-radius:20px;
+        text-align:center;
+        ">
+
+            <h2>🏆 Tahniah!</h2>
+
+            <p style="
+            font-size:35px;
+            margin:15px 0;
+            ">
+                ${stars}
+            </p>
+
+            <h3>
+                Skor kamu:
+                ${diftongScore} / 5
+            </h3>
+
+            <p style="margin-top:15px;">
+
+                ${
+                    diftongScore === 5
+                    ? "Hebat! Kamu sudah pandai mengenal diftong! 🌟"
+                    : diftongScore >= 3
+                    ? "Bagus! Teruskan berlatih! 💪"
+                    : "Tidak mengapa. Cuba lagi, Little Learner! ❤️"
+                }
+
+            </p>
+
+            <button
+            class="activity-btn bm"
+            style="margin-top:20px;"
+            onclick="startDiftongQuiz()">
+
+                🔄 Cuba Lagi
+
+            </button>
+
+        </div>
+
+    `;
+
+}
     
 </script>
 
