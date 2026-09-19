@@ -669,6 +669,53 @@ function showPage(pageId){
 
 const topics = {
 
+    seronokdikampung: {
+    title: "🏡 Seronoknya di Kampung",
+    subtitle: "Kenali perkataan berkaitan kehidupan di kampung",
+    content: `
+    
+    <h2>🌾 Jom Kenali Kampung!</h2>
+
+    <p>
+    Di kampung, kita dapat melihat banyak perkara yang menarik.
+    Mari kenali perkataan yang berkaitan dengan kehidupan di kampung! 😊
+    </p>
+
+    <div class="activity-card">
+
+        <h3>📚 Perkataan Baharu</h3>
+
+        <p>🏡 <b>rumah kampung</b></p>
+        <p>🐔 <b>ayam</b></p>
+        <p>🐄 <b>lembu</b></p>
+        <p>🌴 <b>pokok kelapa</b></p>
+        <p>🌾 <b>sawah</b></p>
+        <p>🐟 <b>ikan</b></p>
+
+    </div>
+
+    <div class="activity-card">
+
+        <h3>💡 Contoh Ayat</h3>
+
+        <p>1. Ayam itu sedang makan.</p>
+        <p>2. Datuk tinggal di rumah kampung.</p>
+        <p>3. Ayah pergi ke sawah.</p>
+        <p>4. Pokok kelapa itu tinggi.</p>
+
+    </div>
+
+    <div class="activity-card">
+
+        <h3>🎯 Jom Uji Diri!</h3>
+
+        <div id="seronokdikampungQuiz"></div>
+
+    </div>
+
+    `
+},
+    
     diftong:{
 title:"🔤 Diftong",
 subtitle:"Kenali bunyi ai, au dan oi",
@@ -1632,6 +1679,10 @@ function openTopic(topic){
 
     showPage("topic");
 
+    if(topic === "seronokdikampung"){
+    startSeronokDiKampungQuiz();
+    }
+    
     if(topic === "pandainya"){
     startPandainyaQuiz();
     }
@@ -4260,7 +4311,93 @@ function showCabaranUnit2Result(){
 
     `;
 }
-        
+
+    function startSeronokDiKampungQuiz(){
+
+    const questions = [
+        {
+            q: "Apakah haiwan yang biasa dipelihara di kampung?",
+            options: ["Ayam", "Kereta", "Meja"],
+            answer: 0
+        },
+        {
+            q: "Di manakah petani menanam padi?",
+            options: ["Sawah", "Dapur", "Bilik"],
+            answer: 0
+        },
+        {
+            q: "Apakah perkataan yang sesuai untuk 🌴?",
+            options: ["Pokok kelapa", "Ayam", "Ikan"],
+            answer: 0
+        },
+        {
+            q: "Datuk tinggal di ______.",
+            options: ["rumah kampung", "sawah", "kolam"],
+            answer: 0
+        },
+        {
+            q: "Apakah haiwan yang menghasilkan susu?",
+            options: ["Lembu", "Ayam", "Ikan"],
+            answer: 0
+        }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion(){
+
+        const box = document.getElementById("seronokdikampungQuiz");
+
+        if(current >= questions.length){
+
+            box.innerHTML = `
+                <h2>🎉 Tahniah!</h2>
+                <p>Markah kamu:</p>
+                <h1>${score} / ${questions.length}</h1>
+                <p>🌟 Hebat! Teruskan belajar!</p>
+                <button class="activity-btn"
+                onclick="startSeronokDiKampungQuiz()">
+                🔄 Cuba Lagi
+                </button>
+            `;
+
+            return;
+        }
+
+        const item = questions[current];
+
+        box.innerHTML = `
+            <h3>Soalan ${current + 1} daripada ${questions.length}</h3>
+
+            <p><b>${item.q}</b></p>
+
+            ${item.options.map((option, index) => `
+                <button
+                    class="activity-btn"
+                    onclick="answerSeronok(${index})">
+                    ${option}
+                </button>
+            `).join("")}
+        `;
+    }
+
+    window.answerSeronok = function(index){
+
+        if(index === questions[current].answer){
+            score++;
+            alert("✅ Betul! Bagus!");
+        }else{
+            alert("❌ Cuba lagi! Jangan risau 😊");
+        }
+
+        current++;
+        showQuestion();
+    };
+
+    showQuestion();
+}
+    
 </script>
 
 </body>
