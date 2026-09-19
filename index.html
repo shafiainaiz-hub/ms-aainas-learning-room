@@ -1590,6 +1590,10 @@ function openTopic(topic){
     startKataNamaAmQuiz();
     }
 
+    if(topic === "cabaranunit2"){
+    startCabaranUnit2Quiz();
+    }
+
 }
 
 function startPandainyaQuiz(){
@@ -4016,6 +4020,164 @@ function showKataNamaAmResult(){
     `;
 }
 
+    const cabaranUnit2Questions = [
+    {
+        question:"Yang manakah mengandungi diftong?",
+        options:["pantai","buah","kuih","buku"],
+        answer:"pantai"
+    },
+    {
+        question:"Yang manakah mempunyai vokal berganding?",
+        options:["kerbau","buah","amboi","pandai"],
+        answer:"buah"
+    },
+    {
+        question:"Perkataan manakah mempunyai diftong?",
+        options:["kuali","puan","kedai","buah"],
+        answer:"kedai"
+    },
+    {
+        question:"ke + lu + ar + ga menjadi...",
+        options:["keluarga","kelapa","kereta","kemala"],
+        answer:"keluarga"
+    },
+    {
+        question:"Yang manakah kata nama am?",
+        options:["Aina","ibu","Malaysia","Isnin"],
+        answer:"ibu"
+    },
+    {
+        question:"Perkataan manakah mempunyai diftong au?",
+        options:["pandai","kerbau","kuih","buah"],
+        answer:"kerbau"
+    },
+    {
+        question:"Yang manakah mempunyai vokal berganding?",
+        options:["pantai","kuih","bangau","amboi"],
+        answer:"kuih"
+    },
+    {
+        question:"ne + nek menjadi...",
+        options:["nenek","nanas","nelayan","negara"],
+        answer:"nenek"
+    },
+    {
+        question:"Yang manakah kata nama am bagi tempat?",
+        options:["Hana","Kedah","sekolah","Ali"],
+        answer:"sekolah"
+    },
+    {
+        question:"Yang manakah mengandungi diftong oi?",
+        options:["pantai","kerbau","amboi","kuali"],
+        answer:"amboi"
+    }
+];
+
+let cabaranUnit2Index = 0;
+let cabaranUnit2Score = 0;
+
+function startCabaranUnit2Quiz(){
+    cabaranUnit2Index = 0;
+    cabaranUnit2Score = 0;
+    showCabaranUnit2Question();
+}
+
+function showCabaranUnit2Question(){
+
+    const box = document.getElementById("cabaranUnit2Quiz");
+
+    if(!box) return;
+
+    const q = cabaranUnit2Questions[cabaranUnit2Index];
+
+    box.innerHTML = `
+
+        <div style="
+            background:#f8f5ff;
+            padding:15px;
+            border-radius:15px;
+            margin-bottom:20px;
+        ">
+            ⭐ Soalan ${cabaranUnit2Index + 1} daripada ${cabaranUnit2Questions.length}
+        </div>
+
+        <h3 style="margin-bottom:20px;">
+            ${q.question}
+        </h3>
+
+        ${q.options.map(option => `
+            <button
+                class="activity-btn bm"
+                onclick="checkCabaranUnit2Answer('${option}')">
+
+                ${option}
+
+            </button>
+        `).join("")}
+
+    `;
+}
+
+function checkCabaranUnit2Answer(answer){
+
+    const q = cabaranUnit2Questions[cabaranUnit2Index];
+
+    if(answer === q.answer){
+        cabaranUnit2Score++;
+    }
+
+    cabaranUnit2Index++;
+
+    if(cabaranUnit2Index < cabaranUnit2Questions.length){
+        showCabaranUnit2Question();
+    }else{
+        showCabaranUnit2Result();
+    }
+}
+
+function showCabaranUnit2Result(){
+
+    const box = document.getElementById("cabaranUnit2Quiz");
+
+    box.innerHTML = `
+
+        <div style="
+            background:#fff7df;
+            padding:25px;
+            border-radius:20px;
+        ">
+
+            <h2>🎉 Cabaran Selesai!</h2>
+
+            <p style="
+                font-size:24px;
+                margin:20px 0;
+            ">
+                ⭐ ${cabaranUnit2Score} / ${cabaranUnit2Questions.length}
+            </p>
+
+            <p>
+                ${cabaranUnit2Score >= 8
+                    ? "🌟 Hebat! Kamu memang power!"
+                    : cabaranUnit2Score >= 5
+                    ? "👏 Bagus! Teruskan berlatih!"
+                    : "💪 Jangan putus asa! Cuba lagi ya!"
+                }
+            </p>
+
+            <button
+                class="activity-btn bm"
+                style="margin-top:20px;"
+                onclick="startCabaranUnit2Quiz()">
+
+                🔄 Cuba Lagi
+
+            </button>
+
+        </div>
+
+    `;
+}
         
 </script>
 
