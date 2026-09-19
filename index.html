@@ -855,6 +855,62 @@ const topics = {
 
     `
 },
+
+    binaayat: {
+    title: "✍️ Bina Ayat",
+    subtitle: "Menyusun perkataan menjadi ayat yang betul",
+    content: `
+    
+    <h2>✍️ Jom Bina Ayat!</h2>
+
+    <p>
+    Susun perkataan dengan betul supaya menjadi ayat yang lengkap. 😊
+    </p>
+
+    <div class="activity-card">
+
+        <h3>💡 Contoh</h3>
+
+        <p>
+        <b>di / kampung / Datuk / tinggal</b>
+        </p>
+
+        <p>⬇️</p>
+
+        <h3>Datuk tinggal di kampung.</h3>
+
+    </div>
+
+    <div class="activity-card">
+
+        <h3>📚 Contoh Lain</h3>
+
+        <p>
+        <b>makan / Ayam / jagung</b>
+        </p>
+
+        <p>➡️ Ayam makan jagung.</p>
+
+        <br>
+
+        <p>
+        <b>ke / sawah / Ayah / pergi</b>
+        </p>
+
+        <p>➡️ Ayah pergi ke sawah.</p>
+
+    </div>
+
+    <div class="activity-card">
+
+        <h3>🎯 Jom Bina Ayat!</h3>
+
+        <div id="binaayatQuiz"></div>
+
+    </div>
+
+    `
+},
     
     diftong:{
 title:"🔤 Diftong",
@@ -1833,6 +1889,10 @@ function openTopic(topic){
 
     if(topic === "bacaifaham"){
     startBacaFahamQuiz();
+    }
+
+    if(topic === "binaayat"){
+    startBinaAyatQuiz();
     }
     
     if(topic === "pandainya"){
@@ -4802,6 +4862,117 @@ function showCabaranUnit2Result(){
     }
 
     window.answerBacaFaham = function(index){
+
+        if(index === questions[current].answer){
+            score++;
+            alert("✅ Betul! Bagus!");
+        }else{
+            alert("❌ Belum tepat. Cuba lagi! 😊");
+        }
+
+        current++;
+        showQuestion();
+    };
+
+    showQuestion();
+    }
+
+    function startBinaAyatQuiz(){
+
+    const questions = [
+        {
+            q: "Susun perkataan: <br><br><b>kampung / di / tinggal / Datuk</b>",
+            options: [
+                "Datuk tinggal di kampung.",
+                "Kampung Datuk di tinggal.",
+                "Di Datuk kampung tinggal."
+            ],
+            answer: 0
+        },
+        {
+            q: "Susun perkataan: <br><br><b>makan / Ayam / jagung</b>",
+            options: [
+                "Ayam makan jagung.",
+                "Makan ayam jagung.",
+                "Jagung ayam makan."
+            ],
+            answer: 0
+        },
+        {
+            q: "Susun perkataan: <br><br><b>ke / sawah / Ayah / pergi</b>",
+            options: [
+                "Ayah pergi ke sawah.",
+                "Sawah pergi Ayah ke.",
+                "Ke Ayah sawah pergi."
+            ],
+            answer: 0
+        },
+        {
+            q: "Susun perkataan: <br><br><b>buku / membaca / Aina</b>",
+            options: [
+                "Aina membaca buku.",
+                "Buku Aina membaca.",
+                "Membaca buku Aina."
+            ],
+            answer: 0
+        },
+        {
+            q: "Susun perkataan: <br><br><b>di / bermain / adik / halaman</b>",
+            options: [
+                "Adik bermain di halaman.",
+                "Halaman adik di bermain.",
+                "Di bermain adik halaman."
+            ],
+            answer: 0
+        }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion(){
+
+        const box = document.getElementById("binaayatQuiz");
+
+        if(current >= questions.length){
+
+            box.innerHTML = `
+                <h2>🎉 Tahniah!</h2>
+
+                <p>Markah kamu:</p>
+
+                <h1>${score} / ${questions.length}</h1>
+
+                <p>✍️ Hebat! Kamu sudah pandai membina ayat!</p>
+
+                <button
+                    class="activity-btn"
+                    onclick="startBinaAyatQuiz()">
+                    🔄 Cuba Lagi
+                </button>
+            `;
+
+            return;
+        }
+
+        const item = questions[current];
+
+        box.innerHTML = `
+            <h3>Soalan ${current + 1} daripada ${questions.length}</h3>
+
+            <p><b>${item.q}</b></p>
+
+            ${item.options.map((option, index) => `
+                <button
+                    class="activity-btn"
+                    onclick="answerBinaAyat(${index})">
+                    ${option}
+                </button>
+            `).join("")}
+        `;
+    }
+
+    window.answerBinaAyat = function(index){
 
         if(index === questions[current].answer){
             score++;
