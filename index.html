@@ -811,6 +811,50 @@ const topics = {
 
     `
 },
+
+    bacaifaham: {
+    title: "📖 Baca dan Faham",
+    subtitle: "Membaca petikan pendek dan menjawab soalan",
+    content: `
+    
+    <h2>📖 Jom Membaca!</h2>
+
+    <div class="activity-card">
+
+        <h3>🌾 Bercuti di Kampung</h3>
+
+        <p>
+        Pada cuti sekolah, Aina pulang ke kampung bersama keluarganya.
+        Aina bermain dengan adik di halaman rumah.
+        Datuk membawa mereka ke sawah.
+        Mereka melihat pokok padi yang menghijau.
+        Aina berasa sangat gembira.
+        </p>
+
+    </div>
+
+    <div class="activity-card">
+
+        <h3>💡 Ingat!</h3>
+
+        <p>
+        Baca petikan dengan teliti.
+        Kemudian, cari jawapan berdasarkan cerita yang dibaca.
+        😊
+        </p>
+
+    </div>
+
+    <div class="activity-card">
+
+        <h3>🎯 Jom Jawab!</h3>
+
+        <div id="bacaifahamQuiz"></div>
+
+    </div>
+
+    `
+},
     
     diftong:{
 title:"🔤 Diftong",
@@ -1785,6 +1829,10 @@ function openTopic(topic){
 
     if(topic === "katakerja"){
     startKataKerjaQuiz();
+    }
+
+    if(topic === "bacaifaham"){
+    startBacaFahamQuiz();
     }
     
     if(topic === "pandainya"){
@@ -4669,6 +4717,97 @@ function showCabaranUnit2Result(){
             alert("✅ Betul! Bagus!");
         }else{
             alert("❌ Cuba lagi! 😊");
+        }
+
+        current++;
+        showQuestion();
+    };
+
+    showQuestion();
+    }
+
+    function startBacaFahamQuiz(){
+
+    const questions = [
+        {
+            q: "Bilakah Aina pulang ke kampung?",
+            options: ["Pada cuti sekolah", "Pada waktu malam", "Pada hari hujan"],
+            answer: 0
+        },
+        {
+            q: "Dengan siapa Aina pulang ke kampung?",
+            options: ["Keluarganya", "Kawannya", "Gurunya"],
+            answer: 0
+        },
+        {
+            q: "Siapakah yang membawa Aina ke sawah?",
+            options: ["Datuk", "Ibu", "Abang"],
+            answer: 0
+        },
+        {
+            q: "Apakah yang mereka lihat di sawah?",
+            options: ["Pokok padi", "Pokok bunga", "Pokok kelapa"],
+            answer: 0
+        },
+        {
+            q: "Bagaimanakah perasaan Aina?",
+            options: ["Gembira", "Sedih", "Marah"],
+            answer: 0
+        }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion(){
+
+        const box = document.getElementById("bacaifahamQuiz");
+
+        if(current >= questions.length){
+
+            box.innerHTML = `
+                <h2>🎉 Tahniah!</h2>
+
+                <p>Markah kamu:</p>
+
+                <h1>${score} / ${questions.length}</h1>
+
+                <p>📖 Hebat! Kamu pandai membaca dan memahami cerita!</p>
+
+                <button
+                    class="activity-btn"
+                    onclick="startBacaFahamQuiz()">
+                    🔄 Cuba Lagi
+                </button>
+            `;
+
+            return;
+        }
+
+        const item = questions[current];
+
+        box.innerHTML = `
+            <h3>Soalan ${current + 1} daripada ${questions.length}</h3>
+
+            <p><b>${item.q}</b></p>
+
+            ${item.options.map((option, index) => `
+                <button
+                    class="activity-btn"
+                    onclick="answerBacaFaham(${index})">
+                    ${option}
+                </button>
+            `).join("")}
+        `;
+    }
+
+    window.answerBacaFaham = function(index){
+
+        if(index === questions[current].answer){
+            score++;
+            alert("✅ Betul! Bagus!");
+        }else{
+            alert("❌ Belum tepat. Cuba lagi! 😊");
         }
 
         current++;
