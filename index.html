@@ -5425,6 +5425,144 @@ function showCabaranUnit2Result(){
 
     showQuestion();
     }
+
+    function startCabaranUnit4Quiz(){
+
+    const questions = [
+        {
+            q: "Siapakah yang perlu kita hormati?",
+            options: ["Keluarga dan rakan-rakan", "Diri sendiri sahaja", "Tiada siapa"],
+            answer: 0
+        },
+        {
+            q: "Apakah sikap yang baik?",
+            options: ["Saling membantu", "Bergaduh", "Mengejek"],
+            answer: 0
+        },
+        {
+            q: "Aina membantu ______ mengemas rumah.",
+            options: ["ibu", "kereta", "televisyen"],
+            answer: 0
+        },
+        {
+            q: "Apakah yang menjadikan kehidupan lebih harmoni?",
+            options: ["Saling menghormati", "Saling bergaduh", "Mementingkan diri"],
+            answer: 0
+        },
+        {
+            q: "Apakah yang patut dilakukan apabila rakan terjatuh?",
+            options: ["Membantu rakan", "Mentertawakan rakan", "Berjalan pergi"],
+            answer: 0
+        },
+        {
+            q: "Hidup bersama dengan baik menjadikan kehidupan lebih ______.",
+            options: ["aman", "marah", "sedih"],
+            answer: 0
+        },
+        {
+            q: "Manakah perbuatan yang baik?",
+            options: ["Membantu ibu", "Mengejek rakan", "Bergaduh"],
+            answer: 0
+        },
+        {
+            q: "Kita hendaklah ______ antara satu sama lain.",
+            options: ["menyayangi", "membenci", "mengejek"],
+            answer: 0
+        },
+        {
+            q: "Apakah sikap yang dapat mengeratkan hubungan?",
+            options: ["Tolong-menolong", "Bergaduh", "Mengejek"],
+            answer: 0
+        },
+        {
+            q: "Apakah sikap yang perlu diamalkan ketika hidup bersama?",
+            options: ["Menghormati", "Menyakiti", "Mengejek"],
+            answer: 0
+        }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion(){
+
+        const box = document.getElementById("cabaranunit4Quiz");
+
+        if(current >= questions.length){
+
+            let message = "";
+
+            if(score === questions.length){
+                message = "🌟 SEMPURNA! Hebat sangat!";
+            }
+            else if(score >= 8){
+                message = "🎉 Tahniah! Kamu sangat hebat!";
+            }
+            else if(score >= 5){
+                message = "👏 Bagus! Teruskan berlatih!";
+            }
+            else{
+                message = "💪 Jangan putus asa! Cuba lagi!";
+            }
+
+            box.innerHTML = `
+                <h2>🏆 Cabaran Tamat!</h2>
+
+                <p>Markah kamu:</p>
+
+                <h1>${score} / ${questions.length}</h1>
+
+                <h2>${message}</h2>
+
+                <button
+                    class="activity-btn"
+                    onclick="startCabaranUnit4Quiz()">
+                    🔄 Cuba Lagi
+                </button>
+            `;
+
+            return;
+        }
+
+        const item = questions[current];
+
+        box.innerHTML = `
+            <h3>🏆 Soalan ${current + 1} daripada ${questions.length}</h3>
+
+            <p><b>${item.q}</b></p>
+
+            ${item.options.map((option, index) => `
+                <button
+                    class="activity-btn"
+                    onclick="answerCabaranUnit4(${index})">
+                    ${option}
+                </button>
+            `).join("")}
+        `;
+    }
+
+    window.answerCabaranUnit4 = function(index){
+
+        if(index === questions[current].answer){
+
+            score++;
+
+            alert("✅ Betul! Hebat!");
+
+        }else{
+
+            alert("❌ Belum tepat. Cuba lagi! 😊");
+
+        }
+
+        current++;
+
+        showQuestion();
+
+    };
+
+    showQuestion();
+    }
     
 </script>
 
