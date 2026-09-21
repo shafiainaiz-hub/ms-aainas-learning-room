@@ -7935,18 +7935,33 @@ function showCabaranUnit2Result(){
 
         if(selected === correct){
 
-            score++;
+    score++;
 
-            buttons[selected].style.background = "#d9f7be";
+    buttons[selected].style.background = "#d9f7be";
 
-        }else{
+    const feedback = document.createElement("p");
+    feedback.innerHTML = "🎉 <strong>Betul!</strong> Hebat!";
+    feedback.style.marginTop = "15px";
+    feedback.style.color = "green";
 
-            buttons[selected].style.background = "#ffd6d6";
-            buttons[correct].style.background = "#d9f7be";
+    quiz.appendChild(feedback);
 
-        }
+}else{
 
-        setTimeout(function(){
+    buttons[selected].style.background = "#ffd6d6";
+    buttons[correct].style.background = "#d9f7be";
+
+    const feedback = document.createElement("p");
+    feedback.innerHTML = "❌ <strong>Salah!</strong> Jawapan yang betul ialah <strong>" 
+        + buttons[correct].innerText + "</strong>.";
+    feedback.style.marginTop = "15px";
+    feedback.style.color = "red";
+
+    quiz.appendChild(feedback);
+
+}
+
+setTimeout(function(){
 
             current++;
             showQuestion();
