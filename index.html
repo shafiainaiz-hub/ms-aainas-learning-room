@@ -1009,6 +1009,35 @@ const topics = {
 
     `
 },
+
+    unit1cabaran: {
+    title: "🏆 Cabaran Unit 1 — Hidup Bersama",
+    subtitle: "Jom uji semua yang kamu telah pelajari!",
+    content: `
+
+    <h2>🏆 Cabaran Unit 1</h2>
+
+    <div class="activity-card">
+
+        <h3>🌟 Jom Uji Diri!</h3>
+
+        <p>
+        Jawab semua soalan dan cuba dapatkan
+        markah yang terbaik! 😊
+        </p>
+
+        <div id="unit1cabaranQuiz"></div>
+
+        <button
+            class="activity-btn"
+            onclick="startUnit1Cabaran()">
+            🚀 Mula Cabaran
+        </button>
+
+    </div>
+
+    `
+},
     
     seronokdikampung: {
     title: "🏡 Seronoknya di Kampung",
@@ -6043,6 +6072,197 @@ function showCabaranUnit2Result(){
     }
 
     window.answerUnit1Kuiz = function(index){
+
+        if(index === questions[current].answer){
+
+            score++;
+
+            alert("✅ Betul! Hebat! 🌟");
+
+        }
+        else{
+
+            alert("❌ Belum tepat. Cuba lagi! 😊");
+
+        }
+
+        current++;
+
+        showQuestion();
+
+    };
+
+    showQuestion();
+
+    }
+
+    function startUnit1Cabaran(){
+
+    const questions = [
+
+        {
+            q: "Apakah maksud hidup bersama?",
+            options: [
+                "Hidup seorang diri",
+                "Hidup bersama orang lain",
+                "Tidak bercakap dengan sesiapa"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "Apakah sikap yang baik terhadap ahli keluarga?",
+            options: [
+                "Bergaduh",
+                "Mengejek",
+                "Menyayangi"
+            ],
+            answer: 2
+        },
+
+        {
+            q: "Apakah yang patut kita lakukan apabila rakan memerlukan bantuan?",
+            options: [
+                "Membantu rakan",
+                "Mentertawakan rakan",
+                "Membiarkan rakan"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Bagaimanakah kita bercakap dengan orang lain?",
+            options: [
+                "Dengan kasar",
+                "Dengan sopan",
+                "Dengan marah"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "Apakah yang boleh kita lakukan bersama rakan?",
+            options: [
+                "Berebut",
+                "Bergaduh",
+                "Bekerjasama"
+            ],
+            answer: 2
+        },
+
+        {
+            q: "Apakah yang perlu kita lakukan untuk menjaga rumah?",
+            options: [
+                "Menjaga kebersihan",
+                "Mengotorkan rumah",
+                "Membuang barang merata-rata"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Apakah sikap yang baik ketika hidup bersama?",
+            options: [
+                "Mengejek orang lain",
+                "Menghormati orang lain",
+                "Mementingkan diri sendiri"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "Apakah yang dapat mengeratkan hubungan dengan rakan?",
+            options: [
+                "Saling mengejek",
+                "Saling bergaduh",
+                "Saling membantu"
+            ],
+            answer: 2
+        },
+
+        {
+            q: "Hidup bersama dengan baik menjadikan kehidupan lebih ______.",
+            options: [
+                "sedih",
+                "aman dan bahagia",
+                "marah"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "Apakah yang patut kita lakukan terhadap orang lain?",
+            options: [
+                "Menghormati mereka",
+                "Menyakiti mereka",
+                "Mengejek mereka"
+            ],
+            answer: 0
+        }
+
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion(){
+
+        const box = document.getElementById("unit1cabaranQuiz");
+
+        if(current >= questions.length){
+
+            let message = "";
+
+            if(score === questions.length){
+                message = "🌟 SEMPURNA! Hebat sangat!";
+            }
+            else if(score >= 8){
+                message = "🎉 Tahniah! Kamu sangat hebat!";
+            }
+            else if(score >= 5){
+                message = "👏 Bagus! Teruskan berlatih!";
+            }
+            else{
+                message = "💪 Jangan putus asa! Cuba lagi!";
+            }
+
+            box.innerHTML = `
+                <h2>🏆 Cabaran Tamat!</h2>
+
+                <p>Markah kamu:</p>
+
+                <h1>${score} / ${questions.length}</h1>
+
+                <h2>${message}</h2>
+
+                <button
+                    class="activity-btn"
+                    onclick="startUnit1Cabaran()">
+                    🔄 Cuba Lagi
+                </button>
+            `;
+
+            return;
+        }
+
+        const item = questions[current];
+
+        box.innerHTML = `
+            <h3>🏆 Soalan ${current + 1} daripada ${questions.length}</h3>
+
+            <p><b>${item.q}</b></p>
+
+            ${item.options.map((option, index) => `
+                <button
+                    class="activity-btn"
+                    onclick="answerUnit1Cabaran(${index})">
+                    ${option}
+                </button>
+            `).join("")}
+        `;
+    }
+
+    window.answerUnit1Cabaran = function(index){
 
         if(index === questions[current].answer){
 
