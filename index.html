@@ -7372,6 +7372,197 @@ function showCabaranUnit2Result(){
     showQuestion();
 
     }
+
+    function startUnit3Cabaran(){
+
+    const questions = [
+
+        {
+            q: "Apakah maksud hidup harmoni?",
+            options: [
+                "Hidup dengan bergaduh",
+                "Hidup seorang diri",
+                "Hidup bersama dengan aman"
+            ],
+            answer: 2
+        },
+
+        {
+            q: "Apakah sikap yang baik terhadap ahli keluarga?",
+            options: [
+                "Mengejek mereka",
+                "Menyayangi dan menghormati",
+                "Bergaduh dengan mereka"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "Apakah yang boleh kita lakukan bersama rakan?",
+            options: [
+                "Bekerjasama",
+                "Berebut",
+                "Bergaduh"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Dua orang rakan mahu menggunakan permainan yang sama. Apakah yang patut mereka lakukan?",
+            options: [
+                "Berebut permainan",
+                "Bergaduh",
+                "Berkongsi permainan"
+            ],
+            answer: 2
+        },
+
+        {
+            q: "Apakah yang dapat mewujudkan kehidupan yang harmoni?",
+            options: [
+                "Saling mengejek",
+                "Saling menghormati",
+                "Saling bergaduh"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "Apakah yang perlu kita lakukan apabila rakan memerlukan bantuan?",
+            options: [
+                "Membantu rakan",
+                "Mentertawakan rakan",
+                "Membiarkan rakan"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Apakah contoh hidup harmoni di sekolah?",
+            options: [
+                "Berebut alat tulis",
+                "Mengejek rakan",
+                "Belajar bersama-sama"
+            ],
+            answer: 2
+        },
+
+        {
+            q: "Apakah sikap yang baik apabila menggunakan sesuatu bersama rakan?",
+            options: [
+                "Merampas",
+                "Berkongsi",
+                "Berebut"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "Hidup harmoni menjadikan kehidupan lebih ______.",
+            options: [
+                "aman dan bahagia",
+                "sedih dan marah",
+                "susah dan bergaduh"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Apakah yang perlu kita amalkan untuk hidup harmoni?",
+            options: [
+                "Saling mengejek",
+                "Saling bergaduh",
+                "Saling membantu dan bekerjasama"
+            ],
+            answer: 2
+        }
+
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion(){
+
+        const box = document.getElementById("unit3cabaranQuiz");
+
+        if(current >= questions.length){
+
+            let message = "";
+
+            if(score === questions.length){
+                message = "🌟 SEMPURNA! Hebat sangat!";
+            }
+            else if(score >= 8){
+                message = "🎉 Tahniah! Kamu sangat hebat!";
+            }
+            else if(score >= 5){
+                message = "👏 Bagus! Teruskan berlatih!";
+            }
+            else{
+                message = "💪 Jangan putus asa! Cuba lagi!";
+            }
+
+            box.innerHTML = `
+                <h2>🎉 Cabaran Tamat!</h2>
+
+                <p>Markah kamu:</p>
+
+                <h1>${score} / ${questions.length}</h1>
+
+                <h2>${message}</h2>
+
+                <button
+                    class="activity-btn"
+                    onclick="startUnit3Cabaran()">
+                    🔄 Cuba Lagi
+                </button>
+            `;
+
+            return;
+        }
+
+        const item = questions[current];
+
+        box.innerHTML = `
+            <h3>🏆 Soalan ${current + 1} daripada ${questions.length}</h3>
+
+            <p><b>${item.q}</b></p>
+
+            ${item.options.map((option, index) => `
+                <button
+                    class="activity-btn"
+                    onclick="answerUnit3Cabaran(${index})">
+                    ${option}
+                </button>
+            `).join("")}
+        `;
+    }
+
+    window.answerUnit3Cabaran = function(index){
+
+        if(index === questions[current].answer){
+
+            score++;
+
+            alert("✅ Betul! Hebat! 🌟");
+
+        }
+        else{
+
+            alert("❌ Belum tepat. Cuba lagi! 😊");
+
+        }
+
+        current++;
+
+        showQuestion();
+
+    };
+
+    showQuestion();
+
+    }
     
 </script>
 
