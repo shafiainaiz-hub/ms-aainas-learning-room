@@ -5875,6 +5875,197 @@ function showCabaranUnit2Result(){
 
     showQuestion();
     }
+
+    function startUnit1Kuiz(){
+
+    const questions = [
+
+        {
+            q: "Apakah maksud hidup bersama?",
+            options: [
+                "Hidup seorang diri",
+                "Hidup bersama orang lain",
+                "Tidak bercakap dengan sesiapa"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "Siapakah yang tinggal bersama kita di rumah?",
+            options: [
+                "Haiwan sahaja",
+                "Orang yang tidak dikenali",
+                "Ahli keluarga"
+            ],
+            answer: 2
+        },
+
+        {
+            q: "Apakah sikap yang baik terhadap ahli keluarga?",
+            options: [
+                "Menyayangi",
+                "Mengejek",
+                "Bergaduh"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Apakah yang patut kita lakukan apabila rakan memerlukan bantuan?",
+            options: [
+                "Mentertawakan rakan",
+                "Membantu rakan",
+                "Membiarkan rakan"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "Apakah yang boleh kita lakukan bersama rakan?",
+            options: [
+                "Berebut",
+                "Bergaduh",
+                "Bekerjasama"
+            ],
+            answer: 2
+        },
+
+        {
+            q: "Bagaimanakah kita bercakap dengan orang lain?",
+            options: [
+                "Dengan sopan",
+                "Dengan kasar",
+                "Dengan marah"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Apakah yang perlu kita lakukan untuk menjaga rumah?",
+            options: [
+                "Mengotorkan rumah",
+                "Menjaga kebersihan",
+                "Membuang barang merata-rata"
+            ],
+            answer: 1
+        },
+
+        {
+            q: "Apakah sikap yang baik ketika hidup bersama?",
+            options: [
+                "Mementingkan diri sendiri",
+                "Mengejek orang lain",
+                "Menghormati orang lain"
+            ],
+            answer: 2
+        },
+
+        {
+            q: "Apakah yang dapat mengeratkan hubungan dengan rakan?",
+            options: [
+                "Saling membantu",
+                "Saling bergaduh",
+                "Saling mengejek"
+            ],
+            answer: 0
+        },
+
+        {
+            q: "Hidup bersama dengan baik menjadikan kehidupan lebih ______.",
+            options: [
+                "sedih",
+                "aman dan bahagia",
+                "marah"
+            ],
+            answer: 1
+        }
+
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion(){
+
+        const box = document.getElementById("unit1kuizQuiz");
+
+        if(current >= questions.length){
+
+            let message = "";
+
+            if(score === questions.length){
+                message = "🌟 SEMPURNA! Hebat sangat!";
+            }
+            else if(score >= 8){
+                message = "🎉 Tahniah! Kamu sangat hebat!";
+            }
+            else if(score >= 5){
+                message = "👏 Bagus! Teruskan berlatih!";
+            }
+            else{
+                message = "💪 Jangan putus asa! Cuba lagi!";
+            }
+
+            box.innerHTML = `
+                <h2>🎉 Kuiz Tamat!</h2>
+
+                <p>Markah kamu:</p>
+
+                <h1>${score} / ${questions.length}</h1>
+
+                <h2>${message}</h2>
+
+                <button
+                    class="activity-btn"
+                    onclick="startUnit1Kuiz()">
+                    🔄 Cuba Lagi
+                </button>
+            `;
+
+            return;
+        }
+
+        const item = questions[current];
+
+        box.innerHTML = `
+            <h3>🧠 Soalan ${current + 1} daripada ${questions.length}</h3>
+
+            <p><b>${item.q}</b></p>
+
+            ${item.options.map((option, index) => `
+                <button
+                    class="activity-btn"
+                    onclick="answerUnit1Kuiz(${index})">
+                    ${option}
+                </button>
+            `).join("")}
+        `;
+    }
+
+    window.answerUnit1Kuiz = function(index){
+
+        if(index === questions[current].answer){
+
+            score++;
+
+            alert("✅ Betul! Hebat! 🌟");
+
+        }
+        else{
+
+            alert("❌ Belum tepat. Cuba lagi! 😊");
+
+        }
+
+        current++;
+
+        showQuestion();
+
+    };
+
+    showQuestion();
+
+    }
     
 </script>
 
