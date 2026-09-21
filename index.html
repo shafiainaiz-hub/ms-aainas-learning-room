@@ -943,6 +943,175 @@ function showPage(pageId){
 
 const topics = {
 
+    "unit7nota": {
+    title: "📖 Nota: Telitinya Rizal",
+    subtitle: "Jom belajar tentang kebersihan dan kesihatan! 🌸",
+
+    content: `
+    <div class="note-box">
+
+        <h2>🔍 Telitinya Rizal</h2>
+
+        <p>
+        Rizal seorang murid yang teliti. Dia sentiasa menjaga
+        kebersihan diri dan persekitarannya.
+        </p>
+
+        <h3>🧼 Kebersihan Diri</h3>
+
+        <ul>
+            <li>🚿 Mandi setiap hari.</li>
+            <li>🪥 Menggosok gigi.</li>
+            <li>🧴 Membasuh tangan dengan bersih.</li>
+            <li>✂️ Memotong kuku yang panjang.</li>
+            <li>👕 Memakai pakaian yang bersih.</li>
+        </ul>
+
+        <h3>🏡 Kebersihan Persekitaran</h3>
+
+        <ul>
+            <li>🗑️ Membuang sampah ke dalam tong sampah.</li>
+            <li>🧹 Membersihkan tempat yang kotor.</li>
+            <li>🧸 Menyusun barang dengan kemas.</li>
+            <li>🌱 Menjaga kebersihan kawasan rumah dan sekolah.</li>
+        </ul>
+
+        <h3>⭐ Mengapa Kita Perlu Menjaga Kebersihan?</h3>
+
+        <p>
+        Kebersihan diri dan persekitaran membantu kita
+        kekal sihat, selesa dan ceria.
+        </p>
+
+    </div>
+    `
+},
+
+    "unit7latihan": {
+    title: "✏️ Latihan: Telitinya Rizal",
+    subtitle: "Jom uji kefahaman kamu! 🌸",
+
+    content: `
+    <div class="note-box">
+
+        <h2>📝 Latihan</h2>
+
+        <p><b>1.</b> Apakah yang perlu kita lakukan untuk menjaga kebersihan gigi?</p>
+
+        <button class="answer-btn" onclick="this.style.background='#d9f7be'">
+        🪥 Menggosok gigi
+        </button>
+
+        <button class="answer-btn" onclick="this.style.background='#ffd6d6'">
+        🍬 Makan gula-gula sepanjang hari
+        </button>
+
+        <button class="answer-btn" onclick="this.style.background='#ffd6d6'">
+        🗑️ Membuang berus gigi
+        </button>
+
+
+        <p><b>2.</b> Di manakah kita perlu membuang sampah?</p>
+
+        <button class="answer-btn" onclick="this.style.background='#ffd6d6'">
+        🌳 Di bawah pokok
+        </button>
+
+        <button class="answer-btn" onclick="this.style.background='#d9f7be'">
+        🗑️ Di dalam tong sampah
+        </button>
+
+        <button class="answer-btn" onclick="this.style.background='#ffd6d6'">
+        🏫 Di tengah kelas
+        </button>
+
+
+        <p><b>3.</b> Apakah yang patut dilakukan jika kuku sudah panjang?</p>
+
+        <button class="answer-btn" onclick="this.style.background='#ffd6d6'">
+        🙈 Membiarkannya sahaja
+        </button>
+
+        <button class="answer-btn" onclick="this.style.background='#ffd6d6'">
+        🎨 Mewarnakannya
+        </button>
+
+        <button class="answer-btn" onclick="this.style.background='#d9f7be'">
+        ✂️ Memotong kuku
+        </button>
+
+
+        <p><b>4.</b> Mengapa kita perlu menjaga kebersihan?</p>
+
+        <button class="answer-btn" onclick="this.style.background='#d9f7be'">
+        ❤️ Supaya kita kekal sihat
+        </button>
+
+        <button class="answer-btn" onclick="this.style.background='#ffd6d6'">
+        🧹 Supaya rumah menjadi kotor
+        </button>
+
+        <button class="answer-btn" onclick="this.style.background='#ffd6d6'">
+        🗑️ Supaya banyak sampah
+        </button>
+
+
+        <p><b>5.</b> Siapakah yang menjaga kebersihan persekitarannya?</p>
+
+        <button class="answer-btn" onclick="this.style.background='#ffd6d6'">
+        😴 Murid yang malas
+        </button>
+
+        <button class="answer-btn" onclick="this.style.background='#d9f7be'">
+        🔍 Rizal yang teliti
+        </button>
+
+        <button class="answer-btn" onclick="this.style.background='#ffd6d6'">
+        🤷 Murid yang tidak peduli
+        </button>
+
+    </div>
+    `
+},
+
+    "unit7kuiz": {
+    title: "🧠 Kuiz: Telitinya Rizal",
+    subtitle: "Jom uji pengetahuan kamu! ⭐",
+
+    content: `
+    <div class="quiz-box">
+
+        <h2>🧠 Kuiz Unit 1</h2>
+
+        <div id="unit7Quiz"></div>
+
+    </div>
+
+    <script>
+    startUnit7Kuiz();
+    <\/script>
+    `
+},
+
+    "unit7cabaran": {
+    title: "🏆 Cabaran Unit: Telitinya Rizal",
+    subtitle: "Berani cuba cabaran terakhir? ⭐",
+
+    content: `
+    <div class="quiz-box">
+
+        <h2>🏆 Cabaran Unit 1</h2>
+
+        <div id="unit7Cabaran"></div>
+
+    </div>
+
+    <script>
+    startUnit7Cabaran();
+    <\/script>
+    `
+},
+
     unit1nota: {
     title: "📖 Nota — Hidup Bersama",
     subtitle: "Mari belajar cara hidup bersama dengan baik",
@@ -7642,6 +7811,303 @@ function showCabaranUnit2Result(){
 
     showQuestion();
 
+    }
+
+    function startUnit7Kuiz(){
+
+    const questions = [
+
+        {
+            question: "Apakah yang perlu kita lakukan untuk menjaga kebersihan gigi?",
+            options: [
+                "Makan gula-gula sepanjang hari",
+                "Menggosok gigi",
+                "Membuang berus gigi"
+            ],
+            answer: 1
+        },
+
+        {
+            question: "Di manakah kita perlu membuang sampah?",
+            options: [
+                "Di bawah pokok",
+                "Di tengah kelas",
+                "Di dalam tong sampah"
+            ],
+            answer: 2
+        },
+
+        {
+            question: "Apakah yang patut dilakukan jika kuku sudah panjang?",
+            options: [
+                "Memotong kuku",
+                "Membiarkannya sahaja",
+                "Mewarnakannya"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Mengapa kita perlu menjaga kebersihan?",
+            options: [
+                "Supaya rumah menjadi kotor",
+                "Supaya kita kekal sihat",
+                "Supaya banyak sampah"
+            ],
+            answer: 1
+        },
+
+        {
+            question: "Siapakah yang menjaga kebersihan persekitarannya?",
+            options: [
+                "Murid yang malas",
+                "Murid yang tidak peduli",
+                "Rizal yang teliti"
+            ],
+            answer: 2
+        }
+
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion(){
+
+        const quiz = document.getElementById("unit7Quiz");
+
+        if(current >= questions.length){
+
+            quiz.innerHTML = `
+                <h2>🎉 Tahniah!</h2>
+
+                <p>
+                Markah kamu:
+                <strong>${score} / ${questions.length}</strong>
+                </p>
+
+                <p>
+                ${score === questions.length
+                    ? "🌟 Hebat! Semua jawapan betul!"
+                    : "💪 Bagus! Cuba lagi untuk dapatkan markah penuh!"}
+                </p>
+
+                <button class="unit-btn" onclick="startUnit7Kuiz()">
+                🔄 Cuba Lagi
+                </button>
+            `;
+
+            return;
+        }
+
+        const q = questions[current];
+
+        quiz.innerHTML = `
+            <p><b>Soalan ${current + 1} daripada ${questions.length}</b></p>
+
+            <h3>${q.question}</h3>
+
+            ${q.options.map((option, index) => `
+                <button class="answer-btn"
+                onclick="answerUnit7Kuiz(${index}, ${q.answer})">
+                ${option}
+                </button>
+            `).join("")}
+        `;
+    }
+
+    window.answerUnit7Kuiz = function(selected, correct){
+
+        const quiz = document.getElementById("unit7Quiz");
+        const buttons = quiz.querySelectorAll(".answer-btn");
+
+        buttons.forEach(button => {
+            button.disabled = true;
+        });
+
+        if(selected === correct){
+
+            score++;
+
+            buttons[selected].style.background = "#d9f7be";
+
+        }else{
+
+            buttons[selected].style.background = "#ffd6d6";
+            buttons[correct].style.background = "#d9f7be";
+
+        }
+
+        setTimeout(function(){
+
+            current++;
+            showQuestion();
+
+        }, 800);
+    };
+
+    showQuestion();
+    }
+
+    function startUnit7Cabaran(){
+
+    const questions = [
+
+        {
+            question: "Apakah maksud menjaga kebersihan diri?",
+            options: [
+                "Menjaga diri supaya sentiasa bersih",
+                "Membiarkan badan kotor",
+                "Tidak perlu mandi"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Apakah yang perlu dilakukan sebelum makan?",
+            options: [
+                "Bermain dahulu",
+                "Membasuh tangan",
+                "Membuang makanan"
+            ],
+            answer: 1
+        },
+
+        {
+            question: "Apakah tindakan yang menunjukkan kita teliti?",
+            options: [
+                "Membuang sampah merata-rata",
+                "Meninggalkan barang berselerak",
+                "Menyusun barang dengan kemas"
+            ],
+            answer: 2
+        },
+
+        {
+            question: "Apakah kesan menjaga kebersihan?",
+            options: [
+                "Kita mudah jatuh sakit",
+                "Kita menjadi lebih sihat",
+                "Persekitaran menjadi kotor"
+            ],
+            answer: 1
+        },
+
+        {
+            question: "Antara berikut, yang manakah amalan kebersihan yang baik?",
+            options: [
+                "Memotong kuku yang panjang",
+                "Membuang sampah di lantai",
+                "Tidak mencuci tangan"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Rizal melihat sampah di lantai. Apakah yang patut dia lakukan?",
+            options: [
+                "Membiarkannya",
+                "Menendangnya ke tepi",
+                "Mengutip dan membuangnya ke dalam tong sampah"
+            ],
+            answer: 2
+        },
+
+        {
+            question: "Mengapakah kita perlu menjaga kebersihan persekitaran?",
+            options: [
+                "Supaya kawasan menjadi bersih dan selesa",
+                "Supaya sampah bertambah",
+                "Supaya kawasan menjadi kotor"
+            ],
+            answer: 0
+        }
+
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuestion(){
+
+        const quiz = document.getElementById("unit7Cabaran");
+
+        if(current >= questions.length){
+
+            quiz.innerHTML = `
+                <h2>🎉 Cabaran Selesai!</h2>
+
+                <p>
+                Markah kamu:
+                <strong>${score} / ${questions.length}</strong>
+                </p>
+
+                <p>
+                ${
+                    score === questions.length
+                    ? "🏆 Hebat! Kamu memang teliti!"
+                    : score >= 5
+                    ? "🌟 Bagus! Kamu hampir dapat markah penuh!"
+                    : "💪 Teruskan berlatih dan cuba lagi!"
+                }
+                </p>
+
+                <button class="unit-btn" onclick="startUnit7Cabaran()">
+                🔄 Cuba Lagi
+                </button>
+            `;
+
+            return;
+        }
+
+        const q = questions[current];
+
+        quiz.innerHTML = `
+            <p>
+                <b>Soalan ${current + 1} daripada ${questions.length}</b>
+            </p>
+
+            <h3>${q.question}</h3>
+
+            ${q.options.map((option, index) => `
+                <button class="answer-btn"
+                onclick="answerUnit7Cabaran(${index}, ${q.answer})">
+                ${option}
+                </button>
+            `).join("")}
+        `;
+    }
+
+    window.answerUnit7Cabaran = function(selected, correct){
+
+        const quiz = document.getElementById("unit7Cabaran");
+        const buttons = quiz.querySelectorAll(".answer-btn");
+
+        buttons.forEach(button => {
+            button.disabled = true;
+        });
+
+        if(selected === correct){
+
+            score++;
+            buttons[selected].style.background = "#d9f7be";
+
+        }else{
+
+            buttons[selected].style.background = "#ffd6d6";
+            buttons[correct].style.background = "#d9f7be";
+
+        }
+
+        setTimeout(function(){
+
+            current++;
+            showQuestion();
+
+        }, 800);
+    };
+
+    showQuestion();
     }
     
 </script>
